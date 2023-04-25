@@ -24,6 +24,11 @@ public class PRN215_GRUPO_4_1 {
         System.out.println("Por fin despues de 3 horas esta cosa funciono");
         
          System.out.println("Hola, probando Git con NetBeans");
+         
+          System.out.println("Hola, probando Git con Diego");
+          System.out.println("Hola, probando Git con Diego");
+          System.out.println("Hola, probando Git con Diego");
+          System.out.println("Hola, probando Git con Diego");
     }
     
 }
