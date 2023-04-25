@@ -30,6 +30,6 @@ public class PRN215_GRUPO_4_1 {
           System.out.println("Hola, probando Git con Diego");
           System.out.println("Hola, probando Git con Diego");
     }
- //Hola este es un comentario de prueba
+
     
 }
