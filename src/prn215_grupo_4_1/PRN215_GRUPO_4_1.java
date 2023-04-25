@@ -22,6 +22,8 @@ public class PRN215_GRUPO_4_1 {
         System.out.println("Probando conexion desde github a netbeans Manuel Romero");
         System.out.println("Por fin despues de 3 horas esta cosa funciono");
         System.out.println("Por fin despues de 3 horas esta cosa funciono");
+        
+         System.out.println("Hola, probando Git con NetBeans");
     }
     
 }
