@@ -16,19 +16,8 @@ public class PRN215_GRUPO_4_1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hola mundo.");
-        System.out.println("Probando conexion");
-        System.out.println("Probando conexion Manuel Romero");
-        System.out.println("Probando conexion desde github a netbeans Manuel Romero");
-        System.out.println("Por fin despues de 3 horas esta cosa funciono");
-        System.out.println("Por fin despues de 3 horas esta cosa funciono");
-        
-         System.out.println("Hola, probando Git con NetBeans");
-         
-          System.out.println("Hola, probando Git con Diego");
-          System.out.println("Hola, probando Git con Diego");
-          System.out.println("Hola, probando Git con Diego");
-          System.out.println("Hola, probando Git con Diego");
+       
+       
     }
 
     
