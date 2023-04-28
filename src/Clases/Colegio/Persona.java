@@ -7,8 +7,81 @@ package Clases.Colegio;
 
 /**
  *
- * @author diani
+ * @author Diana
  */
+
 public class Persona {
+    //Declaracion de atributos del clase persona.
+    public String nombres;
+    public String apellidos;
+    public String telefono;
+    public String direccion;
+    public String correoElectronico;
+    public int codigoPersona;
+    // constructor por defecto.
+    public Persona() {
+    }
+ 
+    //Constructor con parametros.
+
+    public Persona(String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.correoElectronico = correoElectronico;
+        this.codigoPersona = codigoPersona;
+    }
+   
+
+    //Metodos get y set.
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public int getCodigoPersona() {
+        return codigoPersona;
+    }
+
+    public void setCodigoPersona(int codigoPersona) {
+        this.codigoPersona = codigoPersona;
+    }
+    
     
 }
