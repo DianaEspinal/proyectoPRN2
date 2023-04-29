@@ -7,7 +7,7 @@ package prn215_grupo_4_1;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import prn215_grupo_4_1.Grado;
+import Clases.Colegio.Grado;
 
 /**
  *
