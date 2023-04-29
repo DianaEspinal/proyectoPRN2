@@ -11,27 +11,27 @@ package Clases.Colegio;
  */
 public class Grado {
 
-    public Integer getCodigoGrado() {
+    public int getCodigoGrado() {
         return codigoGrado;
     }
 
-    public void setCodigoGrado(Integer codigoGrado) {
+    public void setCodigoGrado(int codigoGrado) {
         this.codigoGrado = codigoGrado;
     }
 
-    public Integer getAnioEnCurso() {
+    public int getAnioEnCurso() {
         return anioEnCurso;
     }
 
-    public void setAnioEnCurso(Integer anioEnCurso) {
+    public void setAnioEnCurso(int anioEnCurso) {
         this.anioEnCurso = anioEnCurso;
     }
 
-    public Integer getCodigoEstudiante() {
+    public int getCodigoEstudiante() {
         return codigoEstudiante;
     }
 
-    public void setCodigoEstudiante(Integer codigoEstudiante) {
+    public void setCodigoEstudiante(int codigoEstudiante) {
         this.codigoEstudiante = codigoEstudiante;
     }
 
@@ -42,8 +42,8 @@ public class Grado {
     public void setCodigoDocente(String codigoDocente) {
         this.codigoDocente = codigoDocente;
     }
-    private Integer codigoGrado;
-    private Integer anioEnCurso;
-    private Integer codigoEstudiante;
+    private int codigoGrado;
+    private int anioEnCurso;
+    private int codigoEstudiante;
     private String codigoDocente;
 }

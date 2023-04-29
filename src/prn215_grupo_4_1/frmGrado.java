@@ -197,7 +197,10 @@ public class frmGrado extends javax.swing.JFrame {
         //Ingreso de datos:
         try{
             Grado grado=new Grado();
-            
+            if(txtCodigoGrado.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de código de grado vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }
+            grado.setCodigoGrado(Integer.parseInt(txtCodigoGrado.getText()));
         }catch(Exception e){}
     }//GEN-LAST:event_btnRegistroGradoActionPerformed
 
