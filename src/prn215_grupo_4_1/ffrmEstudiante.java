@@ -12,6 +12,9 @@ package prn215_grupo_4_1;
 import javax.swing.table.DefaultTableModel;
 import Clases.Colegio.Estudiante;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ffrmEstudiante extends javax.swing.JFrame {
 
     /**
@@ -21,6 +24,25 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         initComponents();
     }
 
+     //declarando para que la tabla muestre los datos agregados.
+    DefaultTableModel model=new DefaultTableModel();
+    protected void agregarEstudianteTabla( Estudiante estudiante){
+    try{
+        model = (DefaultTableModel) tbDatosEstudiante.getModel();
+        Object [] fila = new Object [7];
+        fila [0] = estudiante.getCodigoEstudiante();
+        fila [1] = estudiante.getNombres();
+        fila [2] = estudiante.getApellidos();
+        fila [3] = estudiante.getTelefono();
+        fila [4] = estudiante.getDireccion();
+        fila [5] = estudiante.getCorreoElectronico();
+        fila [6] = estudiante.getNombreEncargado();
+        
+        model.addRow(fila);
+        
+    } catch(Exception e){
+    }
+    }
        
     //Metodo para limpiar textField.
     protected void limpiar(){
@@ -81,6 +103,8 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         txtSalir = new javax.swing.JButton();
         txtDireccionEstu = new javax.swing.JTextField();
         txtTelefonoEstu = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbDatosEstudiante = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion del estudiante:"));
@@ -208,7 +232,24 @@ public class ffrmEstudiante extends javax.swing.JFrame {
 
         lblCodigoEstudiante.setText("Código estudiante:");
 
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyTyped(evt);
+            }
+        });
+
         lblNombresEstudiante.setText("Nombres:");
+
+        txtEncargado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEncargadoKeyTyped(evt);
+            }
+        });
 
         lblApellidosEstudiante.setText("Apellidos:");
 
@@ -226,6 +267,12 @@ public class ffrmEstudiante extends javax.swing.JFrame {
 
         lblEncargado.setText("Encargado:");
 
+        txtNombreEstu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEstuKeyTyped(evt);
+            }
+        });
+
         txtRegistrarEstudiante.setBackground(new java.awt.Color(0, 51, 204));
         txtRegistrarEstudiante.setText("Registrar");
 
@@ -237,11 +284,23 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             }
         });
 
+        txtApellidosEstu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosEstuKeyTyped(evt);
+            }
+        });
+
         txtSalir.setBackground(new java.awt.Color(0, 0, 204));
         txtSalir.setText("Salir");
         txtSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSalirActionPerformed(evt);
+            }
+        });
+
+        txtDireccionEstu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionEstuKeyTyped(evt);
             }
         });
 
@@ -255,6 +314,19 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                 txtTelefonoEstuKeyTyped(evt);
             }
         });
+
+        tbDatosEstudiante.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo ", "Nombres", "Apellidos", "Telefono", "Direccion", "Correo", "Encargd"
+            }
+        ));
+        jScrollPane1.setViewportView(tbDatosEstudiante);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -282,7 +354,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                                 .addComponent(lblCodigoEstudiante)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(txtRegistrarEstudiante)
@@ -307,6 +379,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,7 +427,9 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEncargado)
                     .addComponent(txtEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -392,6 +467,98 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_txtSalirActionPerformed
 
+    private void txtNombreEstuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEstuKeyTyped
+        // TODO add your handling code here:
+        //Validando que solo permita entrada de letras.
+        int key = evt.getKeyChar();
+        
+        boolean mayusculas = key >= 65 && key <=90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.");
+        }
+    }//GEN-LAST:event_txtNombreEstuKeyTyped
+
+    private void txtApellidosEstuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosEstuKeyTyped
+        // TODO add your handling code here:
+         //Validando que solo permita entrada de letras.
+        int key = evt.getKeyChar();
+        
+        boolean mayusculas = key >= 65 && key <=90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.");
+        }
+    }//GEN-LAST:event_txtApellidosEstuKeyTyped
+
+    private void txtDireccionEstuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEstuKeyTyped
+        // TODO add your handling code here:
+         //Validando que solo permita entrada de letras.
+        int key = evt.getKeyChar();
+        
+        boolean mayusculas = key >= 65 && key <=90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.");
+        }
+    }//GEN-LAST:event_txtDireccionEstuKeyTyped
+
+    private void txtEncargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEncargadoKeyTyped
+        // TODO add your handling code here:
+         //Validando que solo permita entrada de letras.
+        int key = evt.getKeyChar();
+        
+        boolean mayusculas = key >= 65 && key <=90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        if (!(minusculas || mayusculas || espacio))
+        {
+            evt.consume();
+        JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.");
+        }
+    }//GEN-LAST:event_txtEncargadoKeyTyped
+
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+        // TODO add your handling code here:
+        // Validando la entrada de correo electronico.
+        if(txtCorreo.getText().length()>49){
+                evt.consume(); //hace que esa pulsación de tecla se rechace.
+               
+    }
+    }
+    // Metodo para validar la entrada de correo electronico.
+    public boolean ValidarMail(String correo) {
+        // Patron para validar el email
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        mat = pat.matcher(correo);
+        if (mat.find()){
+            return true;
+        } else {
+            return false;
+        }
+    
+
+    }//GEN-LAST:event_txtCorreoKeyTyped
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        // TODO add your handling code here:
+        // Validando correo.
+        if(!ValidarMail(txtCorreo.getText())){
+            JOptionPane.showMessageDialog(null, "Ingresa un correo valido.");
+            txtCorreo.requestFocus();
+    }//GEN-LAST:event_txtCorreoFocusLost
+    }
     /**
      * @param args the command line arguments
      */
@@ -429,6 +596,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidosEstudiante;
     private javax.swing.JLabel lblApellidosEstudiante1;
     private javax.swing.JLabel lblCodigoEstudiante;
@@ -443,6 +611,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombresEstudiante1;
     private javax.swing.JLabel lblTelefonoEstudiante;
     private javax.swing.JLabel lblTelefonoEstudiante1;
+    private javax.swing.JTable tbDatosEstudiante;
     private javax.swing.JTextField txtApellidosEstu;
     private javax.swing.JTextField txtApellidosEstu1;
     private javax.swing.JTextField txtCodigoEstudiante;

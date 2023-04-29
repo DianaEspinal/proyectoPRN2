@@ -19,11 +19,6 @@ public class Estudiante extends Persona {
     public Estudiante() {
     }
     //Declaracion de constructores con parametros.
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado) {
-        this.codigoEstudiante = codigoEstudiante;
-        this.estadoAprobacion = estadoAprobacion;
-        this.nombreEncargado = nombreEncargado;
-    }
 
     public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona) {
         super(nombres, apellidos, telefono, direccion, correoElectronico, codigoPersona);
@@ -31,6 +26,7 @@ public class Estudiante extends Persona {
         this.estadoAprobacion = estadoAprobacion;
         this.nombreEncargado = nombreEncargado;
     }
+   
      // Metodos get y set.
     public int getCodigoEstudiante() {
         return codigoEstudiante;
