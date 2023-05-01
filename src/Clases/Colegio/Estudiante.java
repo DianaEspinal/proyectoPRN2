@@ -14,18 +14,28 @@ public class Estudiante extends Persona {
     private int codigoEstudiante;
     private String estadoAprobacion;
     private String nombreEncargado;
-
+    private String grado;
     // Declaracion del constructor por defecto.
     public Estudiante() {
     }
     //Declaracion de constructores con parametros.
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona) {
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado) {
+        this.codigoEstudiante = codigoEstudiante;
+        this.estadoAprobacion = estadoAprobacion;
+        this.nombreEncargado = nombreEncargado;
+        this.grado = grado;
+    }
+
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona) {
         super(nombres, apellidos, telefono, direccion, correoElectronico, codigoPersona);
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
         this.nombreEncargado = nombreEncargado;
+        this.grado = grado;
     }
+
+   
    
      // Metodos get y set.
     public int getCodigoEstudiante() {
@@ -90,6 +100,14 @@ public class Estudiante extends Persona {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
+    }
+
+    public String getGrado() {
+        return grado;
+    }
+
+    public void setGrado(String grado) {
+        this.grado = grado;
     }
     
     
