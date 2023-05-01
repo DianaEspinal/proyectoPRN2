@@ -30,7 +30,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     protected void agregarEstudianteTabla( Estudiante estudiante){
     try{
         model = (DefaultTableModel) tbDatosEstudiante.getModel();
-        Object [] fila = new Object [7];
+        Object [] fila = new Object [8];
         fila [0] = estudiante.getCodigoEstudiante();
         fila [1] = estudiante.getNombres();
         fila [2] = estudiante.getApellidos();
@@ -38,7 +38,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         fila [4] = estudiante.getDireccion();
         fila [5] = estudiante.getCorreoElectronico();
         fila [6] = estudiante.getNombreEncargado();
-        
+        fila [7] = estudiante.getGrado();
         model.addRow(fila);
         
     } catch(Exception e){
@@ -54,6 +54,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
       txtDireccionEstu.setText("");
       txtCorreo.setText("");
       txtEncargado.setText("");
+      txtGrado.setText("");
       }
               
         // Metodo para validar numeros.   
@@ -102,6 +103,8 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         txtTelefonoEstu = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDatosEstudiante = new javax.swing.JTable();
+        lblGrado = new javax.swing.JLabel();
+        txtGrado = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion del estudiante:"));
@@ -323,10 +326,18 @@ public class ffrmEstudiante extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo ", "Nombres", "Apellidos", "Telefono", "Direccion", "Correo", "Encargado"
+                "Codigo ", "Nombres", "Apellidos", "Telefono", "Direccion", "Correo", "Encargado", "Grado"
             }
         ));
         jScrollPane1.setViewportView(tbDatosEstudiante);
+
+        lblGrado.setText("Grado:");
+
+        txtGrado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGradoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -357,16 +368,16 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCorreoEstu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCorreo))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblNombresEstudiante)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtNombreEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtTelefonoEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtTelefonoEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCorreoEstu)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCorreo)))
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -381,7 +392,12 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                                 .addComponent(lblEncargado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtEncargado, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)))
-                        .addGap(0, 239, Short.MAX_VALUE))))
+                        .addGap(0, 239, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblGrado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,7 +439,11 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEncargado)
                     .addComponent(txtEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGrado)
+                    .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -581,12 +601,27 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             } else {
             estudiante.setNombreEncargado(txtEncargado.getText());
             }
+                    if (txtGrado.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+            estudiante.setGrado(txtGrado.getText());
+            }
             agregarEstudianteTabla(estudiante);
             limpiar();
             
         } catch (Exception e){}
         
     }//GEN-LAST:event_txtRegistrarEstudianteActionPerformed
+
+    private void txtGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyTyped
+          //Validando que solo permita entrada de letras.
+        char validar = evt.getKeyChar();
+          if ((Character.isDigit(validar)) && !(evt.getKeyChar() == KeyEvent.VK_SPACE))
+        {
+            evt.consume();
+             JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } 
+    }//GEN-LAST:event_txtGradoKeyTyped
  
 
     /**
@@ -637,6 +672,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel lblDireccionEstudiante1;
     private javax.swing.JLabel lblEncargado;
     private javax.swing.JLabel lblEncargado1;
+    private javax.swing.JLabel lblGrado;
     private javax.swing.JLabel lblNombresEstudiante;
     private javax.swing.JLabel lblNombresEstudiante1;
     private javax.swing.JLabel lblTelefonoEstudiante;
@@ -652,6 +688,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccionEstu1;
     private javax.swing.JTextField txtEncargado;
     private javax.swing.JTextField txtEncargado1;
+    private javax.swing.JTextField txtGrado;
     private javax.swing.JButton txtLimpiar;
     private javax.swing.JButton txtLimpiar1;
     private javax.swing.JTextField txtNombreEstu;
