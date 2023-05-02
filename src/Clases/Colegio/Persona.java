@@ -9,6 +9,8 @@ package Clases.Colegio;
  *
  * @author Diana
  */
+import java.time.LocalDate;
+import java.time.Period;
 
 public class Persona {
     //Declaracion de atributos del clase persona.
@@ -18,20 +20,24 @@ public class Persona {
     public String direccion;
     public String correoElectronico;
     public int codigoPersona;
+    public LocalDate fechaRegistro;
+    
     // constructor por defecto.
     public Persona() {
     }
  
     //Constructor con parametros.
 
-    public Persona(String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona) {
+    public Persona(String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, LocalDate fechaRegistro) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correoElectronico = correoElectronico;
         this.codigoPersona = codigoPersona;
+        this.fechaRegistro = fechaRegistro;
     }
+
    
 
     //Metodos get y set.
@@ -81,6 +87,14 @@ public class Persona {
 
     public void setCodigoPersona(int codigoPersona) {
         this.codigoPersona = codigoPersona;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
     
     
