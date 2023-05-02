@@ -12,9 +12,14 @@ package prn215_grupo_4_1;
 import javax.swing.table.DefaultTableModel;
 import Clases.Colegio.Estudiante;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.time.format.ResolverStyle;
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
+
 
 public class ffrmEstudiante extends javax.swing.JFrame {
 
@@ -30,7 +35,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     protected void agregarEstudianteTabla( Estudiante estudiante){
     try{
         model = (DefaultTableModel) tbDatosEstudiante.getModel();
-        Object [] fila = new Object [8];
+        Object [] fila = new Object [10];
         fila [0] = estudiante.getCodigoEstudiante();
         fila [1] = estudiante.getNombres();
         fila [2] = estudiante.getApellidos();
@@ -38,7 +43,9 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         fila [4] = estudiante.getDireccion();
         fila [5] = estudiante.getCorreoElectronico();
         fila [6] = estudiante.getNombreEncargado();
-        fila [7] = estudiante.getGrado();
+        fila [7] = estudiante.getIdGrado();
+        fila [8] = estudiante.getGrado();
+        fila [9] = estudiante.getFechaRegistro();
         model.addRow(fila);
         
     } catch(Exception e){
@@ -55,12 +62,15 @@ public class ffrmEstudiante extends javax.swing.JFrame {
       txtCorreo.setText("");
       txtEncargado.setText("");
       txtGrado.setText("");
+      txtCodGrado.setText("");
+      txtFechaRegistro.setText("");
       }
               
         // Metodo para validar numeros.   
        protected boolean validarNumeros(char letra){
        return Character.isLetter(letra);
        }
+       
     
     
     @SuppressWarnings("unchecked")
@@ -105,6 +115,11 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         tbDatosEstudiante = new javax.swing.JTable();
         lblGrado = new javax.swing.JLabel();
         txtGrado = new javax.swing.JTextField();
+        lblCodGrado = new javax.swing.JLabel();
+        txtCodGrado = new javax.swing.JTextField();
+        lblFechaRegistro = new javax.swing.JLabel();
+        txtFechaRegistro = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacion del estudiante:"));
@@ -244,7 +259,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             }
         });
 
-        lblNombresEstudiante.setText("Nombres:");
+        lblNombresEstudiante.setText("Nombre:");
 
         txtEncargado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -252,7 +267,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             }
         });
 
-        lblApellidosEstudiante.setText("Apellidos:");
+        lblApellidosEstudiante.setText("Apellido:");
 
         txtCodigoEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -326,7 +341,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo ", "Nombres", "Apellidos", "Telefono", "Direccion", "Correo", "Encargado", "Grado"
+                "Codigo ", "Nombres", "Apellidos", "Telefono", "Direccion", "Correo", "Encargado", "IdGrado", "Grado", "Fecha"
             }
         ));
         jScrollPane1.setViewportView(tbDatosEstudiante);
@@ -339,6 +354,20 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             }
         });
 
+        lblCodGrado.setText("Codigo Grado:");
+
+        txtCodGrado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodGradoKeyTyped(evt);
+            }
+        });
+
+        lblFechaRegistro.setText("Fecha de registro:");
+
+        txtFechaRegistro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
+        jLabel1.setText("Usar formato dd/MM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -346,9 +375,6 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -367,37 +393,55 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                                     .addComponent(txtSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblNombresEstudiante)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtNombreEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtTelefonoEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCorreoEstu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCorreo)))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblApellidosEstudiante, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDireccionEstudiante, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtApellidosEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDireccionEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblEncargado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEncargado, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)))
-                        .addGap(0, 239, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblGrado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(55, 55, 55)
+                        .addComponent(lblCodGrado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCodGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(lblFechaRegistro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtFechaRegistro)
+                                .addGap(239, 239, 239))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblNombresEstudiante)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtNombreEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtTelefonoEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblCorreoEstu)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCorreo)))
+                                .addGap(64, 64, 64)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblApellidosEstudiante, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblDireccionEstudiante, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtApellidosEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtDireccionEstu, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblEncargado)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtEncargado)))
+                                .addGap(0, 362, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,8 +486,14 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGrado)
-                    .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                    .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCodGrado)
+                    .addComponent(txtCodGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFechaRegistro)
+                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -606,6 +656,16 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             } else {
             estudiante.setGrado(txtGrado.getText());
             }
+                      if (txtCodGrado.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+            estudiante.setIdGrado(Integer.parseInt(txtCodGrado.getText()));
+            }
+                         if (txtFechaRegistro.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+            estudiante.setFechaRegistro(LocalDate.parse(txtFechaRegistro.getText()));
+            }
             agregarEstudianteTabla(estudiante);
             limpiar();
             
@@ -622,6 +682,15 @@ public class ffrmEstudiante extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } 
     }//GEN-LAST:event_txtGradoKeyTyped
+
+    private void txtCodGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodGradoKeyTyped
+         //Validar entrada numerica.
+        if(validarNumeros(evt.getKeyChar())){
+        //no deja que se escriba una letra o limpia la caja
+        evt.consume();
+        JOptionPane.showMessageDialog(rootPane, "Ingresar solo números.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtCodGradoKeyTyped
  
 
     /**
@@ -660,10 +729,12 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidosEstudiante;
     private javax.swing.JLabel lblApellidosEstudiante1;
+    private javax.swing.JLabel lblCodGrado;
     private javax.swing.JLabel lblCodigoEstudiante;
     private javax.swing.JLabel lblCodigoEstudiante1;
     private javax.swing.JLabel lblCorreoEstu;
@@ -672,6 +743,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel lblDireccionEstudiante1;
     private javax.swing.JLabel lblEncargado;
     private javax.swing.JLabel lblEncargado1;
+    private javax.swing.JLabel lblFechaRegistro;
     private javax.swing.JLabel lblGrado;
     private javax.swing.JLabel lblNombresEstudiante;
     private javax.swing.JLabel lblNombresEstudiante1;
@@ -680,6 +752,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     private javax.swing.JTable tbDatosEstudiante;
     private javax.swing.JTextField txtApellidosEstu;
     private javax.swing.JTextField txtApellidosEstu1;
+    private javax.swing.JTextField txtCodGrado;
     private javax.swing.JTextField txtCodigoEstudiante;
     private javax.swing.JTextField txtCodigoEstudiante1;
     private javax.swing.JTextField txtCorreo;
@@ -688,6 +761,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
     private javax.swing.JTextField txtDireccionEstu1;
     private javax.swing.JTextField txtEncargado;
     private javax.swing.JTextField txtEncargado1;
+    private javax.swing.JFormattedTextField txtFechaRegistro;
     private javax.swing.JTextField txtGrado;
     private javax.swing.JButton txtLimpiar;
     private javax.swing.JButton txtLimpiar1;
