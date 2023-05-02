@@ -5,6 +5,8 @@
  */
 package Clases.Colegio;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Diana.
@@ -15,27 +17,30 @@ public class Estudiante extends Persona {
     private String estadoAprobacion;
     private String nombreEncargado;
     private String grado;
+    private int idGrado;
     // Declaracion del constructor por defecto.
     public Estudiante() {
     }
     //Declaracion de constructores con parametros.
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado) {
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, int idGrado) {
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
         this.nombreEncargado = nombreEncargado;
         this.grado = grado;
+        this.idGrado = idGrado;
     }
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona) {
-        super(nombres, apellidos, telefono, direccion, correoElectronico, codigoPersona);
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, int idGrado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, LocalDate fechaRegistro) {
+        super(nombres, apellidos, telefono, direccion, correoElectronico, codigoPersona, fechaRegistro);
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
         this.nombreEncargado = nombreEncargado;
         this.grado = grado;
+        this.idGrado = idGrado;
     }
 
-   
+ 
    
      // Metodos get y set.
     public int getCodigoEstudiante() {
@@ -108,6 +113,22 @@ public class Estudiante extends Persona {
 
     public void setGrado(String grado) {
         this.grado = grado;
+    }
+
+    public int getIdGrado() {
+        return idGrado;
+    }
+
+    public void setIdGrado(int idGrado) {
+        this.idGrado = idGrado;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
     
     
