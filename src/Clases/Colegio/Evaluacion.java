@@ -18,6 +18,7 @@ public class Evaluacion {
     String descripcion;
     double porcentajeEvaluacion;
     double notaEvaluacion;
+    private String materia;
     
     //Constructor por defecto
 
@@ -26,7 +27,7 @@ public class Evaluacion {
     
     //Constructor con parametros
 
-    public Evaluacion(int codigoEvaluacion, int codigoDocente, int codigoPeriodo, int numeroEvaluacion, String descripcion, double porcentajeEvaluacion, double notaEvaluacion) {
+    public Evaluacion(int codigoEvaluacion, int codigoDocente, int codigoPeriodo, int numeroEvaluacion, String descripcion, double porcentajeEvaluacion, double notaEvaluacion, String materia) {
         this.codigoEvaluacion = codigoEvaluacion;
         this.codigoDocente = codigoDocente;
         this.codigoPeriodo = codigoPeriodo;
@@ -34,6 +35,15 @@ public class Evaluacion {
         this.descripcion = descripcion;
         this.porcentajeEvaluacion = porcentajeEvaluacion;
         this.notaEvaluacion = notaEvaluacion;
+        this.materia=materia;
+    }
+
+    public String getMateria() {
+        return materia;
+    }
+
+    public void setMateria(String materia) {
+        this.materia = materia;
     }
     
     //Creacion de getters and setters

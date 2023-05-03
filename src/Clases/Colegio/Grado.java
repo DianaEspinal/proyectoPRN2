@@ -35,15 +35,15 @@ public class Grado {
         this.codigoEstudiante = codigoEstudiante;
     }
 
-    public String getCodigoDocente() {
+    public int getCodigoDocente() {
         return codigoDocente;
     }
 
-    public void setCodigoDocente(String codigoDocente) {
+    public void setCodigoDocente(int codigoDocente) {
         this.codigoDocente = codigoDocente;
     }
     private int codigoGrado;
     private int anioEnCurso;
     private int codigoEstudiante;
-    private String codigoDocente;
+    private int codigoDocente;
 }

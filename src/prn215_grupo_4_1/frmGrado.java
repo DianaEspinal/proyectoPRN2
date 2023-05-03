@@ -93,10 +93,7 @@ public class frmGrado extends javax.swing.JFrame {
 
         tbGrado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código de grado", "Año en curso", "Código del estudiante", "Código del docente"
@@ -194,14 +191,45 @@ public class frmGrado extends javax.swing.JFrame {
 
     private void btnRegistroGradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroGradoActionPerformed
         // TODO add your handling code here:
-        //Ingreso de datos:
+        //Ingreso de código de grado:
         try{
             Grado grado=new Grado();
             if(txtCodigoGrado.getText().isEmpty()){
             JOptionPane.showMessageDialog(this,"No dejar el campo de código de grado vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }
+            }else{
             grado.setCodigoGrado(Integer.parseInt(txtCodigoGrado.getText()));
+            }
+
+         //Ingreso de año
+
+            if(txtAnioenCurso.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de año en curso vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            grado.setAnioEnCurso(Integer.parseInt(txtAnioenCurso.getText()));
+            }
+
+        //Ingreso de código de estudiante
+
+            if(txtCodigoEstudiante.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de código de estudiante vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            grado.setCodigoEstudiante(Integer.parseInt(txtCodigoEstudiante.getText()));
+            }
+
+        //Ingreso de código de docente
+
+            if(txtCodigoDocente.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de código de docente vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            grado.setCodigoDocente(Integer.parseInt(txtCodigoDocente.getText()));
+            }
+            
+        //agregar los datos de grado
+        
+        registrarGradoTabla(grado);
+        limpiar();
         }catch(Exception e){}
+        
     }//GEN-LAST:event_btnRegistroGradoActionPerformed
 
     private void txtCodigoGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoGradoKeyTyped
@@ -213,12 +241,6 @@ public class frmGrado extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Ingresar solo números");
         }
     }//GEN-LAST:event_txtCodigoGradoKeyTyped
-
-    private void txtAnioenCursoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioenCursoKeyTyped
-        // TODO add your handling code here:
-        //código para validar solo números en el código de grado
-
-    }//GEN-LAST:event_txtAnioenCursoKeyTyped
 
     private void txtCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoEstudianteKeyTyped
         // TODO add your handling code here:
@@ -243,6 +265,11 @@ public class frmGrado extends javax.swing.JFrame {
         //borón limpiar
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtAnioenCursoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioenCursoKeyTyped
+        // TODO add your handling code here:
+        //código para validar solo números en el código de grado
+    }//GEN-LAST:event_txtAnioenCursoKeyTyped
 
     
     //Funciones para utilizar
