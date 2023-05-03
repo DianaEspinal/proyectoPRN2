@@ -322,12 +322,6 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             }
         });
 
-        txtDireccionEstu.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDireccionEstuKeyTyped(evt);
-            }
-        });
-
         try {
             txtTelefonoEstu.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
         } catch (java.text.ParseException ex) {
@@ -358,12 +352,6 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         });
 
         lblCodGrado.setText("Codigo Grado:");
-
-        txtCodGrado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodGradoKeyTyped(evt);
-            }
-        });
 
         lblFechaRegistro.setText("Fecha de registro:");
 
@@ -396,26 +384,22 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                                     .addComponent(txtSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblGrado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(lblCodGrado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(lblFechaRegistro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtFechaRegistro)
-                                .addGap(239, 239, 239))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblGrado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(lblCodGrado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCodGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)
+                                .addComponent(lblFechaRegistro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -561,17 +545,6 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_txtApellidosEstuKeyTyped
 
-    private void txtDireccionEstuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEstuKeyTyped
-   
-        //Validando que solo permita entrada de letras.
-         char validar = evt.getKeyChar();
-          if ((Character.isDigit(validar)) && !(evt.getKeyChar() == KeyEvent.VK_SPACE))
-        {
-            evt.consume();
-             JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } 
-    }//GEN-LAST:event_txtDireccionEstuKeyTyped
-
     private void txtEncargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEncargadoKeyTyped
         
         //Validando que solo permita entrada de letras.
@@ -620,63 +593,65 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         try {
             Estudiante estudiante = new Estudiante();
             if (txtCodigoEstudiante.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Codigo del Estudiante vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setCodigoEstudiante(Integer.parseInt(txtCodigoEstudiante.getText()));
             }
              if (txtNombreEstu.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Nombre vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setNombres(txtNombreEstu.getText());
             }
               if (txtApellidosEstu.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Apellido vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setApellidos(txtApellidosEstu.getText());
             }
                if (txtTelefonoEstu.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Telefono vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setTelefono(txtTelefonoEstu.getText());
             }
                 if (txtDireccionEstu.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Dirección vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setDireccion(txtDireccionEstu.getText());
             }
                  if (txtCorreo.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Correo Electronico vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setCorreoElectronico(txtCorreo.getText());
             }
                   if (txtEncargado.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Encargado vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setNombreEncargado(txtEncargado.getText());
             }
                     if (txtGrado.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Grado vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
             estudiante.setGrado(txtGrado.getText());
             }
                       if (txtCodGrado.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Codigo de Grado vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-            estudiante.setIdGrado(Integer.parseInt(txtCodGrado.getText()));
+            estudiante.setIdGrado(txtCodGrado.getText());
             }
                          if (txtFechaRegistro.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "No dejar el campo Fecha de Registro vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            model.removeRow(ERROR);
             } else {
-              SimpleDateFormat formato= new SimpleDateFormat("dd/MM/yyyy");
-             Date FechaDate= null;
+                 Date FechaDate = new Date();            
+              SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
             try{
-                FechaDate= formato.parse(txtFechaRegistro.getText());
+                
+                FechaDate = formato.parse(txtFechaRegistro.getText());
+               
             }catch(ParseException ex){
-              System.out.println(ex);
-            }
-            
+            } 
             estudiante.setFechaRegistro(FechaDate);
             }
+                         
             agregarEstudianteTabla(estudiante);
             limpiar();
             
@@ -693,15 +668,6 @@ public class ffrmEstudiante extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } 
     }//GEN-LAST:event_txtGradoKeyTyped
-
-    private void txtCodGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodGradoKeyTyped
-         //Validar entrada numerica.
-        if(validarNumeros(evt.getKeyChar())){
-        //no deja que se escriba una letra o limpia la caja
-        evt.consume();
-        JOptionPane.showMessageDialog(rootPane, "Ingresar solo números.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_txtCodGradoKeyTyped
   
 
     /**
