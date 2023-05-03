@@ -18,13 +18,13 @@ public class Estudiante extends Persona {
     private String estadoAprobacion;
     private String nombreEncargado;
     private String grado;
-    private int idGrado;
+    private String idGrado;
     // Declaracion del constructor por defecto.
     public Estudiante() {
     }
     //Declaracion de constructores con parametros.
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, int idGrado) {
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, String idGrado) {
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
         this.nombreEncargado = nombreEncargado;
@@ -32,7 +32,7 @@ public class Estudiante extends Persona {
         this.idGrado = idGrado;
     }
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, int idGrado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, Date fechaRegistro) {
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, String idGrado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, Date fechaRegistro) {
         super(nombres, apellidos, telefono, direccion, correoElectronico, codigoPersona, fechaRegistro);
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
@@ -41,9 +41,8 @@ public class Estudiante extends Persona {
         this.idGrado = idGrado;
     }
 
-    
+  
    
-    
      // Metodos get y set.
     public int getCodigoEstudiante() {
         return codigoEstudiante;
@@ -117,13 +116,14 @@ public class Estudiante extends Persona {
         this.grado = grado;
     }
 
-    public int getIdGrado() {
+    public String getIdGrado() {
         return idGrado;
     }
 
-    public void setIdGrado(int idGrado) {
+    public void setIdGrado(String idGrado) {
         this.idGrado = idGrado;
     }
+
 
     public Date getFechaRegistro() {
         return fechaRegistro;
@@ -134,6 +134,6 @@ public class Estudiante extends Persona {
     }
 
    
-    
+
     
 }
