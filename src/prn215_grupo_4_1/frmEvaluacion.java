@@ -93,10 +93,25 @@ public class frmEvaluacion extends javax.swing.JFrame {
         jLabel7.setText("Nota de evaluación");
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,6 +209,57 @@ public class frmEvaluacion extends javax.swing.JFrame {
     private void txtMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMateriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMateriaActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        //Ingreso de código de grado:
+        try{
+            Evaluacion evaluacion=new Evaluacion();
+            if(txtPorcentajeEvaluacion.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de porcentaje de evaluación vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            evaluacion.setPorcentajeEvaluacion(Double.parseDouble(txtPorcentajeEvaluacion.getText()));
+            }
+
+            if(txtNotaEvaluacion.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de nota de evaluación vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            evaluacion.setNotaEvaluacion(Double.parseDouble(txtNotaEvaluacion.getText()));
+            }
+            
+            if(txtDocente.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de docente vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            evaluacion.setCodigoDocente(Integer.parseInt(txtDocente.getText()));
+            }
+            
+            if(txtMateria.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de materia vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            evaluacion.setMateria(txtMateria.getText());
+            }
+            
+            if(txtDescripcion.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"No dejar el campo de descripción vacio", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+            evaluacion.setDescripcion(txtDescripcion.getText());
+            }
+            
+            registrarEvaluacionTabla(evaluacion);
+            limpiar();
+        }catch (Exception e) {}
+
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
     //Funciones para utilizar
     //limpiar caja de texto
     protected void limpiar(){
