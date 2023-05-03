@@ -11,7 +11,9 @@ package Clases.Colegio;
  */
 import java.time.LocalDate;
 import java.time.Period;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
+
 
 public class Persona {
     //Declaracion de atributos del clase persona.
@@ -38,9 +40,6 @@ public class Persona {
         this.codigoPersona = codigoPersona;
         this.fechaRegistro = fechaRegistro;
     }
-
-
-   
 
     //Metodos get y set.
     public String getNombres() {
@@ -99,6 +98,8 @@ public class Persona {
         this.fechaRegistro = fechaRegistro;
     }
 
+  
+   
    
     
     
