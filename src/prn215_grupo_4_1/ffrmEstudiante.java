@@ -12,6 +12,8 @@ package prn215_grupo_4_1;
 import javax.swing.table.DefaultTableModel;
 import Clases.Colegio.Estudiante;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
@@ -441,7 +443,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                                         .addComponent(lblEncargado)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtEncargado)))
-                                .addGap(0, 362, Short.MAX_VALUE)))
+                                .addGap(0, 434, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -665,7 +667,15 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                          if (txtFechaRegistro.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-            estudiante.setFechaRegistro(txtFechaRegistro.getText());
+              SimpleDateFormat formato= new SimpleDateFormat("dd/MM/yyyy");
+             Date FechaDate= null;
+            try{
+                FechaDate= formato.parse(txtFechaRegistro.getText());
+            }catch(ParseException ex){
+              System.out.println(ex);
+            }
+            
+            estudiante.setFechaRegistro(FechaDate);
             }
             agregarEstudianteTabla(estudiante);
             limpiar();
@@ -692,7 +702,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Ingresar solo números.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtCodGradoKeyTyped
- 
+  
 
     /**
      * @param args the command line arguments
