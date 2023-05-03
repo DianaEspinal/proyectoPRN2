@@ -6,6 +6,7 @@
 package Clases.Colegio;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Estudiante extends Persona {
         this.idGrado = idGrado;
     }
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, int idGrado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, LocalDate fechaRegistro) {
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, int idGrado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, Date fechaRegistro) {
         super(nombres, apellidos, telefono, direccion, correoElectronico, codigoPersona, fechaRegistro);
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
@@ -40,8 +41,9 @@ public class Estudiante extends Persona {
         this.idGrado = idGrado;
     }
 
- 
+    
    
+    
      // Metodos get y set.
     public int getCodigoEstudiante() {
         return codigoEstudiante;
@@ -123,13 +125,15 @@ public class Estudiante extends Persona {
         this.idGrado = idGrado;
     }
 
-    public LocalDate getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDate fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
+
+   
     
     
 }
