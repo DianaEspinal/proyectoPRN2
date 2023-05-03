@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 import java.time.format.ResolverStyle;
 import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 
 public class ffrmEstudiante extends javax.swing.JFrame {
@@ -664,7 +665,7 @@ public class ffrmEstudiante extends javax.swing.JFrame {
                          if (txtFechaRegistro.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
-            estudiante.setFechaRegistro(LocalDate.parse(txtFechaRegistro.getText()));
+            estudiante.setFechaRegistro(txtFechaRegistro.getText());
             }
             agregarEstudianteTabla(estudiante);
             limpiar();
