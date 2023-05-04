@@ -637,18 +637,19 @@ public class ffrmEstudiante extends javax.swing.JFrame {
             } else {
             estudiante.setIdGrado(txtCodGrado.getText());
             }
-                         if (txtFechaRegistro.getText().isEmpty()){
+                     if (txtFechaRegistro.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "No dejar el campo Fecha de Registro vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             model.removeRow(ERROR);
             } else {
                  Date FechaDate = new Date();            
-              SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+              SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+              
             try{
-                
                 FechaDate = formato.parse(txtFechaRegistro.getText());
-               
+        
             }catch(ParseException ex){
             } 
+            formato.format(FechaDate);
             estudiante.setFechaRegistro(FechaDate);
             }
                          
