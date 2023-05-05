@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package prn215_grupo_4_1;
-
+import Clases.Colegio.Conexion;
 /**
  *
  * @author diani
@@ -16,7 +16,9 @@ public class PRN215_GRUPO_4_1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       
+        //Esto lo pueden borrar, solo es para que verifiquen que tengan conexion
+        Conexion con = new Conexion();
+        con.conectar();
        
     }
 
