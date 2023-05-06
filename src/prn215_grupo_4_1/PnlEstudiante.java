@@ -7,7 +7,7 @@ package prn215_grupo_4_1;
 
 /**
  *
- * @author diani
+ * @author Diana
  */
 import javax.swing.table.DefaultTableModel;
 import Clases.Colegio.Estudiante;
@@ -65,7 +65,7 @@ public class PnlEstudiante extends javax.swing.JPanel {
     
      //Metodo para limpiar textField.
     protected void limpiar(){
-      txtCodigoEstudiante.setText("");
+      
       txtNombreEstu.setText("");
       txtApellidosEstu.setText("");
       txtTelefonoEstu.setText("");
@@ -73,7 +73,6 @@ public class PnlEstudiante extends javax.swing.JPanel {
       txtCorreo.setText("");
       txtEncargado.setText("");
       txtGrado.setText("");
-      txtCodGrado.setText("");
       txtFechaRegistro.setText("");
       }
               
@@ -89,7 +88,6 @@ public class PnlEstudiante extends javax.swing.JPanel {
         lblGrado = new javax.swing.JLabel();
         txtGrado = new javax.swing.JTextField();
         lblCodGrado = new javax.swing.JLabel();
-        txtCodGrado = new javax.swing.JTextField();
         lblFechaRegistro = new javax.swing.JLabel();
         txtFechaRegistro = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -97,10 +95,10 @@ public class PnlEstudiante extends javax.swing.JPanel {
         lblCorreoEstu = new javax.swing.JLabel();
         lblEncargado = new javax.swing.JLabel();
         txtNombreEstu = new javax.swing.JTextField();
-        txtRegistrarEstudiante = new javax.swing.JButton();
-        txtLimpiar = new javax.swing.JButton();
+        btnRegistrarEstudiante = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         txtApellidosEstu = new javax.swing.JTextField();
-        txtSalir = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         txtDireccionEstu = new javax.swing.JTextField();
         txtTelefonoEstu = new javax.swing.JFormattedTextField();
         lblCodigoEstudiante = new javax.swing.JLabel();
@@ -108,10 +106,11 @@ public class PnlEstudiante extends javax.swing.JPanel {
         lblNombresEstudiante = new javax.swing.JLabel();
         txtEncargado = new javax.swing.JTextField();
         lblApellidosEstudiante = new javax.swing.JLabel();
-        txtCodigoEstudiante = new javax.swing.JTextField();
         lblTelefonoEstudiante = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDatosEstudiante = new javax.swing.JTable();
+        cbxCodigoGrado = new javax.swing.JComboBox<>();
+        cbxCodigoEstudiante = new javax.swing.JComboBox<>();
 
         lblGrado.setText("Grado:");
 
@@ -141,19 +140,19 @@ public class PnlEstudiante extends javax.swing.JPanel {
             }
         });
 
-        txtRegistrarEstudiante.setBackground(new java.awt.Color(0, 51, 204));
-        txtRegistrarEstudiante.setText("Registrar");
-        txtRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarEstudiante.setBackground(new java.awt.Color(0, 51, 204));
+        btnRegistrarEstudiante.setText("Registrar");
+        btnRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRegistrarEstudianteActionPerformed(evt);
+                btnRegistrarEstudianteActionPerformed(evt);
             }
         });
 
-        txtLimpiar.setBackground(new java.awt.Color(0, 0, 204));
-        txtLimpiar.setText("Limpiar");
-        txtLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setBackground(new java.awt.Color(0, 0, 204));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLimpiarActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -163,11 +162,11 @@ public class PnlEstudiante extends javax.swing.JPanel {
             }
         });
 
-        txtSalir.setBackground(new java.awt.Color(0, 0, 204));
-        txtSalir.setText("Salir");
-        txtSalir.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(0, 0, 204));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSalirActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -205,12 +204,6 @@ public class PnlEstudiante extends javax.swing.JPanel {
 
         lblApellidosEstudiante.setText("Apellido:");
 
-        txtCodigoEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoEstudianteKeyTyped(evt);
-            }
-        });
-
         lblTelefonoEstudiante.setText("Telefono:");
 
         tbDatosEstudiante.setModel(new javax.swing.table.DefaultTableModel(
@@ -223,6 +216,10 @@ public class PnlEstudiante extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tbDatosEstudiante);
 
+        cbxCodigoGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbxCodigoEstudiante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,18 +231,18 @@ public class PnlEstudiante extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblCodigoEstudiante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbxCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblTelefonoEstudiante))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 694, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtRegistrarEstudiante)
+                                .addComponent(btnRegistrarEstudiante)
                                 .addGap(25, 25, 25))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,8 +256,8 @@ public class PnlEstudiante extends javax.swing.JPanel {
                                         .addGap(55, 55, 55)
                                         .addComponent(lblCodGrado)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCodGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(65, 65, 65)
+                                        .addComponent(cbxCodigoGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
                                         .addComponent(lblFechaRegistro)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -301,16 +298,16 @@ public class PnlEstudiante extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(txtRegistrarEstudiante))
+                        .addComponent(btnRegistrarEstudiante))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCodigoEstudiante)
-                            .addComponent(txtCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbxCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(txtLimpiar))
+                        .addComponent(btnLimpiar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -328,7 +325,7 @@ public class PnlEstudiante extends javax.swing.JPanel {
                             .addComponent(txtDireccionEstu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(txtSalir)))
+                        .addComponent(btnSalir)))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreoEstu)
@@ -340,9 +337,9 @@ public class PnlEstudiante extends javax.swing.JPanel {
                     .addComponent(lblGrado)
                     .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCodGrado)
-                    .addComponent(txtCodGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFechaRegistro)
-                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxCodigoGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
@@ -372,83 +369,16 @@ public class PnlEstudiante extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtNombreEstuKeyTyped
 
-    private void txtRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegistrarEstudianteActionPerformed
-        // TODO add your handling code here:
-        try {
-            Estudiante estudiante = new Estudiante();
-            if (txtCodigoEstudiante.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Codigo del Estudiante vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setCodigoEstudiante(Integer.parseInt(txtCodigoEstudiante.getText()));
-            }
-            if (txtNombreEstu.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Nombre vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setNombres(txtNombreEstu.getText());
-            }
-            if (txtApellidosEstu.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Apellido vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setApellidos(txtApellidosEstu.getText());
-            }
-            if (txtTelefonoEstu.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Telefono vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setTelefono(txtTelefonoEstu.getText());
-            }
-            if (txtDireccionEstu.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Dirección vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setDireccion(txtDireccionEstu.getText());
-            }
-            if (txtCorreo.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Correo Electronico vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setCorreoElectronico(txtCorreo.getText());
-            }
-            if (txtEncargado.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Encargado vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setNombreEncargado(txtEncargado.getText());
-            }
-            if (txtGrado.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Grado vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setGrado(txtGrado.getText());
-            }
-            if (txtCodGrado.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Codigo de Grado vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                estudiante.setIdGrado(txtCodGrado.getText());
-            }
-            if (txtFechaRegistro.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "No dejar el campo Fecha de Registro vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                model.removeRow(ERROR);
-            } else {
-                Date FechaDate = new Date();
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    private void btnRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEstudianteActionPerformed
+      
 
-                try{
-                    FechaDate = formato.parse(txtFechaRegistro.getText());
+    }//GEN-LAST:event_btnRegistrarEstudianteActionPerformed
 
-                }catch(ParseException ex){
-                }
-                formato.format(FechaDate);
-                estudiante.setFechaRegistro(FechaDate);
-            }
-
-            agregarEstudianteTabla(estudiante);
-            limpiar();
-
-        } catch (Exception e){}
-
-    }//GEN-LAST:event_txtRegistrarEstudianteActionPerformed
-
-    private void txtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimpiarActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
 
         //Invocamos la funcion limpiar.
         limpiar();
-    }//GEN-LAST:event_txtLimpiarActionPerformed
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtApellidosEstuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosEstuKeyTyped
 
@@ -461,12 +391,12 @@ public class PnlEstudiante extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtApellidosEstuKeyTyped
 
-    private void txtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalirActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
         //Funcion para salir del programa.
        Window w = SwingUtilities.getWindowAncestor(PnlEstudiante.this);
         JOptionPane.showMessageDialog(this, "Feliz Dia!");
-    }//GEN-LAST:event_txtSalirActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtTelefonoEstuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEstuKeyTyped
         // TODO add your handling code here:
@@ -522,16 +452,6 @@ public class PnlEstudiante extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtEncargadoKeyTyped
 
-    private void txtCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoEstudianteKeyTyped
-        // TODO add your handling code here:
-        //Validando para que solo permita datos numericos.
-        if(validarNumeros(evt.getKeyChar())){
-            //no deja que se escriba una letra o limpia la caja
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Ingresar solo números.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_txtCodigoEstudianteKeyTyped
-
      public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -565,6 +485,11 @@ public class PnlEstudiante extends javax.swing.JPanel {
      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnRegistrarEstudiante;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cbxCodigoEstudiante;
+    private javax.swing.JComboBox<String> cbxCodigoGrado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellidosEstudiante;
@@ -579,17 +504,12 @@ public class PnlEstudiante extends javax.swing.JPanel {
     private javax.swing.JLabel lblTelefonoEstudiante;
     private javax.swing.JTable tbDatosEstudiante;
     private javax.swing.JTextField txtApellidosEstu;
-    private javax.swing.JTextField txtCodGrado;
-    private javax.swing.JTextField txtCodigoEstudiante;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccionEstu;
     private javax.swing.JTextField txtEncargado;
     private javax.swing.JFormattedTextField txtFechaRegistro;
     private javax.swing.JTextField txtGrado;
-    private javax.swing.JButton txtLimpiar;
     private javax.swing.JTextField txtNombreEstu;
-    private javax.swing.JButton txtRegistrarEstudiante;
-    private javax.swing.JButton txtSalir;
     private javax.swing.JFormattedTextField txtTelefonoEstu;
     // End of variables declaration//GEN-END:variables
 }
