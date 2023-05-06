@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Clases.Colegio.Evaluacion;
 
+
 /**
  *
  * @author Admin
@@ -195,43 +196,7 @@ DefaultTableModel model=new DefaultTableModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-        //Ingreso de código de grado:
-        try{
-            Evaluacion evaluacion=new Evaluacion();
-            if(txtPorcentajeEvaluacion.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this,"No dejar el campo de porcentaje de evaluación vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-                evaluacion.setPorcentajeEvaluacion(Double.parseDouble(txtPorcentajeEvaluacion.getText()));
-            }
-
-            if(txtNotaEvaluacion.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this,"No dejar el campo de nota de evaluación vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-                evaluacion.setNotaEvaluacion(Double.parseDouble(txtNotaEvaluacion.getText()));
-            }
-
-            if(txtDocente.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this,"No dejar el campo de docente vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-                evaluacion.setCodigoDocente(Integer.parseInt(txtDocente.getText()));
-            }
-
-            if(txtMateria.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this,"No dejar el campo de materia vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-                evaluacion.setMateria(txtMateria.getText());
-            }
-
-            if(txtDescripcion.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this,"No dejar el campo de descripción vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-                evaluacion.setDescripcion(txtDescripcion.getText());
-            }
-
-            registrarEvaluacionTabla(evaluacion);
-            limpiar();
-        }catch (Exception e) {}
+      
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -275,6 +240,41 @@ protected void limpiar(){
     }catch(Exception e){
     }
     }
+      public static void main(String args[]) {
+        
+        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        
+        /* Create and display the form */
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new panelEvaluacion().setVisible(true);
+            }
+        });
+  }
+      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
