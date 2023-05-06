@@ -16,10 +16,12 @@ public class PRN215_GRUPO_4_1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //Esto lo pueden borrar, solo es para que verifiquen que tengan conexion
-        Conexion con = new Conexion();
-        con.conectar();
-       
+        /*panelGrado panel = new panelGrado();
+        panel.show();*/
+        frmPrueba2 grado = new frmPrueba2();
+        grado.show();
+        /*frmGrado grado = new frmGrado();
+        grado.show();*/
     }
 
     

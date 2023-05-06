@@ -10,7 +10,7 @@ package Clases.Colegio;
  * @author Admin
  */
 public class Grado {
-
+/*
     public int getCodigoGrado() {
         return codigoGrado;
     }
@@ -46,4 +46,25 @@ public class Grado {
     private int anioEnCurso;
     private int codigoEstudiante;
     private int codigoDocente;
+*/
+    //Declaracion de atributos del clase grado.
+    private String codigoGrado;
+    private String grado;
+    
+    public String getCodigoGrado() {
+        return codigoGrado;
+    }
+
+    public void setCodigoGrado(String codigoGrado) {
+        this.codigoGrado = codigoGrado;
+    }
+    
+    public String getGrado() {
+        return grado;
+    }
+
+    public void setGrado(String grado) {
+        this.grado = grado;
+    }
+    
 }

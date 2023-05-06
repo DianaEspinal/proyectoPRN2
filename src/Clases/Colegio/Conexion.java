@@ -20,18 +20,14 @@ public class Conexion {
     String user = "root";
     String password = "";
     String driver = "com.mysql.cj.jdbc.Driver";
-    Connection con;
-    
-    public Conexion()
-    {
-    }
+    Connection con;    
     
     public Connection conectar()
     {        
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url + db, user, password);
-               JOptionPane.showMessageDialog(null, "Conexión exitosa a la base");
+               //JOptionPane.showMessageDialog(null, "Conexión exitosa a la base");
         } catch (ClassNotFoundException |SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error en la conexión de la base" + e.toString());
             //Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e); e

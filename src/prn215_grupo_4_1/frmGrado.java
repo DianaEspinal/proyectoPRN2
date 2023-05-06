@@ -5,22 +5,39 @@
  */
 package prn215_grupo_4_1;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import Clases.Colegio.*;
+import funciones.*;
+import java.sql.*;
 import javax.swing.table.DefaultTableModel;
-import Clases.Colegio.Grado;
+import java.sql.PreparedStatement;
+
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
  * @author Admin
  */
 public class frmGrado extends javax.swing.JFrame {
+    
+    Conexion con = new Conexion();
+    Connection cn;
+    Statement st;
+    ResultSet rs;
+    DefaultTableModel modelo;
+    String idGrado;
+    Grado controlador_grado = new Grado();
+    funciones_grado funciones = new funciones_grado();
     //declarando model
-    DefaultTableModel model=new DefaultTableModel();
+    DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form frmGrado
      */
     public frmGrado() {
         initComponents();
+        mostrarGrados();        
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
     }
 
     /**
@@ -35,17 +52,15 @@ public class frmGrado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtCodigoEstudiante = new javax.swing.JTextField();
         txtCodigoGrado = new javax.swing.JTextField();
-        txtAnioenCurso = new javax.swing.JTextField();
-        txtCodigoDocente = new javax.swing.JTextField();
+        txtNombreGrado = new javax.swing.JTextField();
         btnRegistroGrado = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbGrado = new javax.swing.JTable();
         btnLimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,31 +71,15 @@ public class frmGrado extends javax.swing.JFrame {
 
         jLabel3.setText("Año en curso");
 
-        jLabel4.setText("Código del estudiante");
-
-        jLabel5.setText("Código del docente");
-
-        txtCodigoEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoEstudianteKeyTyped(evt);
-            }
-        });
-
         txtCodigoGrado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCodigoGradoKeyTyped(evt);
             }
         });
 
-        txtAnioenCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombreGrado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtAnioenCursoKeyTyped(evt);
-            }
-        });
-
-        txtCodigoDocente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoDocenteKeyTyped(evt);
+                txtNombreGradoKeyTyped(evt);
             }
         });
 
@@ -96,10 +95,16 @@ public class frmGrado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código de grado", "Año en curso", "Código del estudiante", "Código del docente"
+                "IdGrado", "Grado"
             }
         ));
+        tbGrado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbGradoMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbGrado);
+        tbGrado.getAccessibleContext().setAccessibleName("");
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +120,20 @@ public class frmGrado extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,31 +141,32 @@ public class frmGrado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtCodigoGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtCodigoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtAnioenCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRegistroGrado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel1)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(89, 89, 89)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCodigoGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRegistroGrado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnActualizar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,33 +175,28 @@ public class frmGrado extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCodigoGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegistroGrado))
+                        .addComponent(txtCodigoGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(12, 12, 12))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(txtAnioenCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtCodigoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnLimpiar)
+                                        .addComponent(btnSalir))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnRegistroGrado)
+                                        .addComponent(btnActualizar)
+                                        .addComponent(btnEliminar)))
+                                .addGap(37, 37, 37))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLimpiar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSalir)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(txtNombreGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
         );
@@ -190,45 +205,9 @@ public class frmGrado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistroGradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroGradoActionPerformed
-        // TODO add your handling code here:
-        //Ingreso de código de grado:
-        try{
-            Grado grado=new Grado();
-            if(txtCodigoGrado.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"No dejar el campo de código de grado vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-            grado.setCodigoGrado(Integer.parseInt(txtCodigoGrado.getText()));
-            }
-
-         //Ingreso de año
-
-            if(txtAnioenCurso.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"No dejar el campo de año en curso vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-            grado.setAnioEnCurso(Integer.parseInt(txtAnioenCurso.getText()));
-            }
-
-        //Ingreso de código de estudiante
-
-            if(txtCodigoEstudiante.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"No dejar el campo de código de estudiante vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-            grado.setCodigoEstudiante(Integer.parseInt(txtCodigoEstudiante.getText()));
-            }
-
-        //Ingreso de código de docente
-
-            if(txtCodigoDocente.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"No dejar el campo de código de docente vacio", "Error",JOptionPane.ERROR_MESSAGE);
-            }else{
-            grado.setCodigoDocente(Integer.parseInt(txtCodigoDocente.getText()));
-            }
-            
-        //agregar los datos de grado
-        
-        registrarGradoTabla(grado);
+        agregarGrado();
+        mostrarGrados();
         limpiar();
-        }catch(Exception e){}
         
     }//GEN-LAST:event_btnRegistroGradoActionPerformed
 
@@ -242,66 +221,70 @@ public class frmGrado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCodigoGradoKeyTyped
 
-    private void txtCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoEstudianteKeyTyped
-        // TODO add your handling code here:
-        //código para validar solo números en el código de grado
-
-    }//GEN-LAST:event_txtCodigoEstudianteKeyTyped
-
-    private void txtCodigoDocenteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoDocenteKeyTyped
-        // TODO add your handling code here:
-        //código para validar solo números en el código de grado
-    
-    }//GEN-LAST:event_txtCodigoDocenteKeyTyped
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
         //botón salir
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
         //borón limpiar
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void txtAnioenCursoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioenCursoKeyTyped
-        // TODO add your handling code here:
+    private void txtNombreGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreGradoKeyTyped
         //código para validar solo números en el código de grado
-    }//GEN-LAST:event_txtAnioenCursoKeyTyped
+    }//GEN-LAST:event_txtNombreGradoKeyTyped
 
-    
-    //Funciones para utilizar
-    //limpiar caja de texto
-    protected void limpiar(){
-    txtCodigoGrado.setText("");
-    txtCodigoEstudiante.setText("");
-    txtAnioenCurso.setText("");
-    txtCodigoDocente.setText("");
-    }
-    
+    private void tbGradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbGradoMouseClicked
+        
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            Conexion con = new Conexion();
+            Connection conn = con.conectar();
+            
+            int fila = tbGrado.getSelectedRow();
+            String codigoGrado = tbGrado.getValueAt(fila, 0).toString();
+            
+            ps = conn.prepareStatement("SELECT * FROM grado WHERE idGrado = ?");
+            ps.setString(1, codigoGrado);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) 
+            {
+                txtCodigoGrado.setText(rs.getString("idGrado"));
+                txtNombreGrado.setText(rs.getString("grado"));
+                
+            }
+        } 
+        catch (Exception e) 
+        {
+              JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_tbGradoMouseClicked
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizarGrado();
+        mostrarGrados();
+        limpiar();
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminarGrado();
+        mostrarGrados();
+        limpiar();
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     protected boolean validarNumeros(char letra){
-    return Character.isLetter(letra);
-    }
-    //método registrar grado a tabla
-    protected void registrarGradoTabla(Grado grado){
-    try{
-        //se obtiene el modelo del control tabla del formulario
-        model = (DefaultTableModel) tbGrado.getModel();
-        //Se debe hacer un objeto con el numero de columnas de la tabla
-        Object[] fila=new Object[4];
-        //se debe llenar cada dato de las columnas de la tabla
-        fila[0]=grado.getCodigoGrado();
-        fila[1]=grado.getAnioEnCurso();
-        fila[2]=grado.getCodigoEstudiante();
-        fila[3]=grado.getCodigoDocente();
-        
-        model.addRow(fila);
-        
-    }catch(Exception e){
-    }
+        return Character.isLetter(letra);
     }
 
     /*
@@ -334,26 +317,119 @@ public class frmGrado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmGrado().setVisible(true);
+                new frmGrado().setVisible(true);             
             }
         });
     }
 
+    
+    void mostrarGrados(){
+               
+        try 
+        {
+            DefaultTableModel modelo = new DefaultTableModel();
+            tbGrado.setModel(modelo);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.conectar();
+            
+            String sql = "SELECT * FROM grado;"; 
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("Codigo Grado");
+            modelo.addColumn("Nombre grado");
+            while (rs.next()) 
+            {
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for (int i = 0; i < cantidadColumnas; i++) 
+                {
+                    filas[i] = rs.getObject(i + 1);
+                }
+                
+                modelo.addRow(filas);
+            }
+        } 
+        catch (Exception e) 
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }       
+        
+    }
+    
+    private void agregarGrado()
+    {
+        
+        if (txtCodigoGrado.getText().trim() == "" || txtNombreGrado.getText().trim() == "") 
+        {
+            JOptionPane.showMessageDialog(rootPane, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+            controlador_grado.setCodigoGrado(txtCodigoGrado.getText());
+            controlador_grado.setGrado(txtNombreGrado.getText());
+            funciones.agregarGrado(controlador_grado);
+            
+        }
+    }
+    
+    private void actualizarGrado()
+    {
+        if (txtCodigoGrado.getText().trim() == "" || txtNombreGrado.getText().trim() == "") 
+        {
+            JOptionPane.showMessageDialog(rootPane, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+            controlador_grado.setCodigoGrado(txtCodigoGrado.getText());
+            controlador_grado.setGrado(txtNombreGrado.getText());
+            funciones.actualizarGrado(controlador_grado);
+            
+        }
+    }
+    
+    private void eliminarGrado()
+    {
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres eliminar este grado?", "Eliminar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.YES_OPTION) 
+        {
+            int fila = tbGrado.getSelectedRow();
+            String idGrado = tbGrado.getValueAt(fila, 0).toString();
+            controlador_grado.setCodigoGrado(idGrado);
+            funciones.borrarGrado(controlador_grado);
+
+        }
+    }   
+    //limpiar caja de texto
+    protected void limpiar()
+    {
+        
+        txtCodigoGrado.setText("");
+        txtNombreGrado.setText("");
+        
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegistroGrado;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbGrado;
-    private javax.swing.JTextField txtAnioenCurso;
-    private javax.swing.JTextField txtCodigoDocente;
-    private javax.swing.JTextField txtCodigoEstudiante;
     private javax.swing.JTextField txtCodigoGrado;
+    private javax.swing.JTextField txtNombreGrado;
     // End of variables declaration//GEN-END:variables
 
 }
