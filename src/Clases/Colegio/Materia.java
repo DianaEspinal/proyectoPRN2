@@ -12,7 +12,7 @@ package Clases.Colegio;
 public class Materia {
     
     //Creacion de variables
-    String codigoMateria;
+    int codigoMateria;
     String nombreMateria;
     
     //Cosntructor sin parametros
@@ -22,18 +22,18 @@ public class Materia {
     
     //Constructor con parametros
 
-    public Materia(String codigoMateria, String nombreMateria) {
+    public Materia(int codigoMateria, String nombreMateria) {
         this.codigoMateria = codigoMateria;
         this.nombreMateria = nombreMateria;
     }
     
     //Creacion de getters and setters
 
-    public String getCodigoMateria() {
+    public int getCodigoMateria() {
         return codigoMateria;
     }
 
-    public void setCodigoMateria(String codigoMateria) {
+    public void setCodigoMateria(int codigoMateria) {
         this.codigoMateria = codigoMateria;
     }
 

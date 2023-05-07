@@ -18,7 +18,7 @@ public class frmElegirOpcion extends javax.swing.JFrame {
      */
     public frmElegirOpcion() {
         initComponents();
-        panelGrado jpanel1 = new panelGrado ();
+        PnlGrado jpanel1 = new PnlGrado ();
         jpanel1.setSize(774, 537);
         jpanel1.setLocation(0, 0);
 
@@ -183,7 +183,7 @@ public class frmElegirOpcion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        panelGrado jpanel1 = new panelGrado ();
+        PnlGrado jpanel1 = new PnlGrado ();
         jpanel1.setSize(774, 537);
         jpanel1.setLocation(0, 0);
 

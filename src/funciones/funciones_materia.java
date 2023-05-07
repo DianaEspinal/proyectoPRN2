@@ -14,28 +14,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author diego
  */
-public class funciones_grado extends Conexion {
+public class funciones_materia extends Conexion {
     
-    public boolean agregarGrado(Grado agregar)
+    public boolean agregarMateria(Materia agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
         //String sqlVerify = "SELECT * FROM WHERE id = ?";
-        String sql = "INSERT INTO grado(idGrado, grado) VALUES (?, ?)";
+        String sql = "INSERT INTO materia(nombreMateria) VALUES (?);";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, agregar.getCodigoGrado());
-            ps.setString(2, agregar.getGrado());
+            ps.setString(1, agregar.getNombreMateria());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Grado agregado correctamente");
+            JOptionPane.showMessageDialog(null, "Materia agregada correctamente");
             return true;
             
         } catch (SQLException e) 
         {
-            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un grado", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de una materia", "Advertencia",JOptionPane.WARNING_MESSAGE);
             System.out.println(e);
             return false;
         } 
@@ -50,20 +49,20 @@ public class funciones_grado extends Conexion {
         }
     }
     
-    public boolean actualizarGrado(Grado actualizar)
+    public boolean actualizarMateria(Materia actualizar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "UPDATE grado SET grado = ? WHERE idGrado = ?";
+        String sql = "UPDATE materia SET nombreMateria = ? WHERE idMateria = ?;";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, actualizar.getGrado());
-            ps.setString(2, actualizar.getCodigoGrado());            
+            ps.setString(1, actualizar.getNombreMateria());
+            ps.setInt(2, actualizar.getCodigoMateria());            
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Grado actualizado correctamente");
+            JOptionPane.showMessageDialog(null, "Materia actualizada correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -82,19 +81,19 @@ public class funciones_grado extends Conexion {
         }
     }
     
-     public boolean borrarGrado(Grado borrar)
+     public boolean eliminarMateria(Materia borrar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "DELETE FROM grado WHERE idGrado = ?";
+        String sql = "DELETE FROM materia WHERE idMateria = ?;";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, borrar.getCodigoGrado());            
+            ps.setInt(1, borrar.getCodigoMateria());            
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Grado eliminado correctamente");
+            JOptionPane.showMessageDialog(null, "Materia eliminada correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -111,7 +110,5 @@ public class funciones_grado extends Conexion {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
-    }     
+    }
 }
-
-
