@@ -31,11 +31,12 @@ public class funciones_grado extends Conexion {
             ps.setString(1, agregar.getCodigoGrado());
             ps.setString(2, agregar.getGrado());
             ps.execute();
+            JOptionPane.showMessageDialog(null, "Grado agregado correctamente");
             return true;
             
         } catch (SQLException e) 
         {
-            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un grado");
+            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un grado", "Advertencia",JOptionPane.WARNING_MESSAGE);
             System.out.println(e);
             return false;
         } 
@@ -63,6 +64,7 @@ public class funciones_grado extends Conexion {
             ps.setString(1, actualizar.getGrado());
             ps.setString(2, actualizar.getCodigoGrado());            
             ps.execute();
+            JOptionPane.showMessageDialog(null, "Grado actualizado correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -93,6 +95,7 @@ public class funciones_grado extends Conexion {
             ps = con.prepareStatement(sql);
             ps.setString(1, borrar.getCodigoGrado());            
             ps.execute();
+            JOptionPane.showMessageDialog(null, "Grado eliminado correctamente");
             return true;
             
         } catch (SQLException e) 
