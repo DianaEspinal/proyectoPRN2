@@ -72,7 +72,7 @@ public class PnlEstudiante extends javax.swing.JPanel {
       txtDireccionEstu.setText("");
       txtCorreo.setText("");
       txtEncargado.setText("");
-      txtGrado.setText("");
+      
 
       }
               
