@@ -18,7 +18,7 @@ public class PRN215_GRUPO_4_1 {
         // TODO code application logic here
         /*panelGrado panel = new panelGrado();
         panel.show();*/
-        frmPrueba2 grado = new frmPrueba2();
+        frmElegirOpcion grado = new frmElegirOpcion();
         grado.show();
         /*frmGrado grado = new frmGrado();
         grado.show();*/

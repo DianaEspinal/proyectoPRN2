@@ -35,7 +35,8 @@ public class funciones_grado extends Conexion {
             
         } catch (SQLException e) 
         {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un grado");
+            System.out.println(e);
             return false;
         } 
         finally
