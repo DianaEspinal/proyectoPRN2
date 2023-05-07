@@ -40,12 +40,12 @@ public class frmElegirOpcion extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         content = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnEvaluciones = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         btnEstudiante = new javax.swing.JButton();
         btnMateria1 = new javax.swing.JButton();
-        btnMateria2 = new javax.swing.JButton();
+        btnPeriodo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -65,14 +65,14 @@ public class frmElegirOpcion extends javax.swing.JFrame {
             .addGap(0, 537, Short.MAX_VALUE)
         );
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 0, 102));
-        jButton1.setText("Evaluaciones");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEvaluciones.setBackground(new java.awt.Color(255, 255, 255));
+        btnEvaluciones.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnEvaluciones.setForeground(new java.awt.Color(204, 0, 102));
+        btnEvaluciones.setText("Evaluaciones");
+        btnEvaluciones.setBorder(null);
+        btnEvaluciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEvalucionesActionPerformed(evt);
             }
         });
 
@@ -87,14 +87,14 @@ public class frmElegirOpcion extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(204, 0, 102));
-        jButton4.setText("Salir");
-        jButton4.setBorder(null);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(204, 0, 102));
+        btnSalir.setText("Salir");
+        btnSalir.setBorder(null);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -119,14 +119,14 @@ public class frmElegirOpcion extends javax.swing.JFrame {
             }
         });
 
-        btnMateria2.setBackground(new java.awt.Color(255, 255, 255));
-        btnMateria2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnMateria2.setForeground(new java.awt.Color(204, 0, 102));
-        btnMateria2.setText("Periodo");
-        btnMateria2.setBorder(null);
-        btnMateria2.addActionListener(new java.awt.event.ActionListener() {
+        btnPeriodo.setBackground(new java.awt.Color(255, 255, 255));
+        btnPeriodo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnPeriodo.setForeground(new java.awt.Color(204, 0, 102));
+        btnPeriodo.setText("Periodo");
+        btnPeriodo.setBorder(null);
+        btnPeriodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMateria2ActionPerformed(evt);
+                btnPeriodoActionPerformed(evt);
             }
         });
 
@@ -139,9 +139,9 @@ public class frmElegirOpcion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(btnMateria1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(btnMateria2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(btnEvaluciones, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(btnPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(btnEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
                 .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,11 +156,11 @@ public class frmElegirOpcion extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(btnMateria1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(btnMateria2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEvaluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,7 +193,7 @@ public class frmElegirOpcion extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEvalucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvalucionesActionPerformed
         // TODO add your handling code here:
         panelEvaluacion jpanel2 = new panelEvaluacion ();
         jpanel2.setSize(774, 537);
@@ -203,12 +203,12 @@ public class frmElegirOpcion extends javax.swing.JFrame {
         content.add(jpanel2, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEvalucionesActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteActionPerformed
         // TODO add your handling code here:
@@ -224,11 +224,27 @@ public class frmElegirOpcion extends javax.swing.JFrame {
 
     private void btnMateria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateria1ActionPerformed
         // TODO add your handling code here:
+        PnlMateria jpanel4 = new PnlMateria ();
+        jpanel4.setSize(774, 537);
+        jpanel4.setLocation(0, 0);
+
+        content.removeAll();
+        content.add(jpanel4, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }//GEN-LAST:event_btnMateria1ActionPerformed
 
-    private void btnMateria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateria2ActionPerformed
+    private void btnPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeriodoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMateria2ActionPerformed
+        PnlPeriodo jpanel5 = new PnlPeriodo ();
+        jpanel5.setSize(774, 537);
+        jpanel5.setLocation(0, 0);
+
+        content.removeAll();
+        content.add(jpanel5, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_btnPeriodoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,12 +283,12 @@ public class frmElegirOpcion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstudiante;
+    private javax.swing.JButton btnEvaluciones;
     private javax.swing.JButton btnMateria1;
-    private javax.swing.JButton btnMateria2;
+    private javax.swing.JButton btnPeriodo;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JPanel content;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

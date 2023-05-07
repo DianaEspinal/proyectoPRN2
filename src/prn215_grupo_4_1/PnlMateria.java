@@ -65,15 +65,22 @@ public class PnlMateria extends javax.swing.JPanel {
         tbDatosMateria = new javax.swing.JTable();
         lblCodigoEstudiante = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        lblNombresEstudiante.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNombresEstudiante.setText("Nombre:");
 
+        txtCodigoMateria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        txtNombreMateria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtNombreMateria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreMateriaKeyTyped(evt);
             }
         });
 
-        btnRegistrarMateria.setBackground(new java.awt.Color(0, 51, 204));
+        btnRegistrarMateria.setBackground(new java.awt.Color(255, 196, 0));
+        btnRegistrarMateria.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnRegistrarMateria.setText("Registrar");
         btnRegistrarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +88,8 @@ public class PnlMateria extends javax.swing.JPanel {
             }
         });
 
-        txtLimpiar.setBackground(new java.awt.Color(0, 0, 204));
+        txtLimpiar.setBackground(new java.awt.Color(255, 196, 0));
+        txtLimpiar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         txtLimpiar.setText("Limpiar");
         txtLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +97,8 @@ public class PnlMateria extends javax.swing.JPanel {
             }
         });
 
-        txtSalir.setBackground(new java.awt.Color(0, 0, 204));
+        txtSalir.setBackground(new java.awt.Color(255, 196, 0));
+        txtSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         txtSalir.setText("Salir");
         txtSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +116,7 @@ public class PnlMateria extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tbDatosMateria);
 
+        lblCodigoEstudiante.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblCodigoEstudiante.setText("Código materia:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -114,46 +124,49 @@ public class PnlMateria extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(btnRegistrarMateria)
-                .addGap(197, 197, 197)
-                .addComponent(txtLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lblNombresEstudiante)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(lblCodigoEstudiante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodigoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblNombresEstudiante)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblCodigoEstudiante)
+                                .addGap(39, 39, 39)
+                                .addComponent(txtCodigoMateria)))
+                        .addGap(120, 120, 120)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegistrarMateria, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(txtLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(116, 116, 116))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombresEstudiante)
-                    .addComponent(txtNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCodigoEstudiante)
-                    .addComponent(txtCodigoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarMateria)
-                    .addComponent(txtLimpiar)
-                    .addComponent(txtSalir))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNombresEstudiante)
+                            .addComponent(txtNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCodigoEstudiante)
+                            .addComponent(txtCodigoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(106, 106, 106))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSalir)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnRegistrarMateria)
+                        .addGap(32, 32, 32)
+                        .addComponent(txtLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
 
