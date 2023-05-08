@@ -46,7 +46,7 @@ public class PnlDocentes extends javax.swing.JPanel {
 
         jLabel1.setText("idDocente:");
 
-        jLabel2.setText("idDocente:");
+        jLabel2.setText("idMateria:");
 
         cmbIdDocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
