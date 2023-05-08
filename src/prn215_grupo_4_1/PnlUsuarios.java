@@ -64,7 +64,11 @@ public class PnlUsuarios extends javax.swing.JPanel {
 
         jLabel3.setText("Clave:");
 
-        txtIdUsuario.setText("jTextField1");
+        txtIdUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdUsuarioKeyTyped(evt);
+            }
+        });
 
         txtRegistrarEstudiante.setBackground(new java.awt.Color(0, 51, 204));
         txtRegistrarEstudiante.setText("Registrar");
@@ -74,7 +78,11 @@ public class PnlUsuarios extends javax.swing.JPanel {
             }
         });
 
-        txtUsuario.setText("jTextField1");
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         txtLimpiar.setBackground(new java.awt.Color(0, 0, 204));
         txtLimpiar.setText("Limpiar");
@@ -84,7 +92,11 @@ public class PnlUsuarios extends javax.swing.JPanel {
             }
         });
 
-        txtClave.setText("jTextField1");
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClaveKeyTyped(evt);
+            }
+        });
 
         txtSalir.setBackground(new java.awt.Color(0, 0, 204));
         txtSalir.setText("Salir");
@@ -176,6 +188,11 @@ public class PnlUsuarios extends javax.swing.JPanel {
       txtClave.setText("");
     }
     
+     // Metodo para validar numeros.   
+       protected boolean validarNumeros(char letra){
+       return Character.isLetter(letra);
+       }
+    
     private void txtLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimpiarActionPerformed
 
         //Invocamos la funcion limpiar.
@@ -193,7 +210,62 @@ public class PnlUsuarios extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRegistrarEstudianteActionPerformed
 
+    private void txtIdUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdUsuarioKeyTyped
+         //Validando para que solo permita datos numericos.
+        if(validarNumeros(evt.getKeyChar())){
+            //no deja que se escriba una letra o limpia la caja
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingresar solo números.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtIdUsuarioKeyTyped
 
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        //Validando que el campo no este vacio.
+        if (txtUsuario.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } 
+            
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyTyped
+         //Validando que el campo no este vacio.
+        if (txtClave.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } 
+    }//GEN-LAST:event_txtClaveKeyTyped
+    
+ public static void main(String args[]) {
+        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PnlEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PnlEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PnlEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PnlEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PnlEstudiante().setVisible(true);
+            }
+        });
+  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
