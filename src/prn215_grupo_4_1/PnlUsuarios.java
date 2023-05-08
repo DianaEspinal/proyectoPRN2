@@ -229,7 +229,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
 
     private void txtClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyTyped
          //Validando que el campo no este vacio.
-        if (txtUsuario.getText().isEmpty()){
+        if (txtClave.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "No dejar el campo vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
             } 
     }//GEN-LAST:event_txtClaveKeyTyped
