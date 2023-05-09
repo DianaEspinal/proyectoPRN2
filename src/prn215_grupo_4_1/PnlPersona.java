@@ -466,7 +466,7 @@ public class PnlPersona extends javax.swing.JPanel {
               JOptionPane.showMessageDialog(null, e);
         }
 
-    
+        }
       public static void main(String args[]) {
         
         
