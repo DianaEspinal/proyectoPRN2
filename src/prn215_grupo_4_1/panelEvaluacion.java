@@ -3,24 +3,59 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prn215_grupo_4_1;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import Clases.Colegio.Evaluacion;
-
-
 /**
  *
- * @author Admin
+ * @author yanis
  */
-public class panelEvaluacion extends javax.swing.JPanel {
-DefaultTableModel model=new DefaultTableModel();
+
+    package prn215_grupo_4_1;
+    import java.awt.Color;
+    import javax.swing.*;
+    import Clases.Colegio.*;
+    import funciones.*;
+    import java.awt.Component;
+    import java.awt.Font;
+    import java.sql.*;
+    import javax.swing.table.DefaultTableModel;
+    import java.sql.PreparedStatement; 
+
+    import javax.swing.JOptionPane;
+    import Clases.Colegio.Evaluacion;
+    import java.awt.Window;
+    import java.awt.event.KeyEvent;
+    import javax.swing.SwingUtilities;
+    import javax.swing.table.DefaultTableModel;
+
+
+    public class panelEvaluacion extends javax.swing.JPanel {
+    /* Declaracion de variables */
+    Conexion con = new Conexion();
+    Connection cn;
+    Statement st;
+    ResultSet rs;
+    DefaultTableModel modelo;
+    String idEvaluacion;
+    DefaultTableModel model = new DefaultTableModel();
+    // Se hace llamado de el controlador y las funciones SQL
+    Evaluacion controlador_evaluacion = new Evaluacion();
+    funciones_evaluacion funciones = new funciones_evaluacion();
+    Component rootPane = null;
     /**
-     * Creates new form prueba2
+     * Creates new form PnlEvaluacion
      */
     public panelEvaluacion() {
         initComponents();
+        mostrarEvaluaciones();
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        tbEvaluaciones.getTableHeader().setOpaque(false);
+        tbEvaluaciones.getTableHeader().setBackground(new Color(183, 35, 95));
+        tbEvaluaciones.getTableHeader().setForeground(Color.WHITE);
+        tbEvaluaciones.getTableHeader().setFont(new Font ("Dialog", Font.BOLD, 15));
+        tbEvaluaciones.setFont(new Font ("Dialog", Font.PLAIN, 12));
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +70,7 @@ DefaultTableModel model=new DefaultTableModel();
         txtNotaEvaluacion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtMateria = new javax.swing.JTextField();
         txtPorcentajeEvaluacion = new javax.swing.JTextField();
@@ -47,6 +82,7 @@ DefaultTableModel model=new DefaultTableModel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -67,12 +103,12 @@ DefaultTableModel model=new DefaultTableModel();
             }
         });
 
-        btnLimpiar.setBackground(new java.awt.Color(255, 196, 0));
-        btnLimpiar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new java.awt.Color(255, 196, 0));
+        btnActualizar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -121,6 +157,15 @@ DefaultTableModel model=new DefaultTableModel();
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("Nota de evaluación");
 
+        btnEliminar.setBackground(new java.awt.Color(255, 196, 0));
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +175,7 @@ DefaultTableModel model=new DefaultTableModel();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -147,9 +192,8 @@ DefaultTableModel model=new DefaultTableModel();
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -164,7 +208,9 @@ DefaultTableModel model=new DefaultTableModel();
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtDescripcion)))
-                        .addGap(204, 204, 204))))
+                        .addGap(14, 14, 14)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,39 +230,220 @@ DefaultTableModel model=new DefaultTableModel();
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(btnRegistrar)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnLimpiar)))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
+    /* Creacion de las diferentes funciones para mandar los datos capturados de los textboxes al controlador y ser mandados a las funciones SQL */
+    void mostrarEvaluaciones()
+    {
+               
+        try 
+        {
+            DefaultTableModel modelo = new DefaultTableModel();
+            tbEvaluaciones.setModel(modelo);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.conectar();
+            
+            String sql = "SELECT * FROM evaluaciones;"; 
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            modelo.addColumn("Codigo evaluacion");
+            modelo.addColumn("Nota de evaluacion");
+            modelo.addColumn("Porcentaje de evaluacion");
+            modelo.addColumn("Docente");
+            modelo.addColumn("Materia");
+            modelo.addColumn("Descripcion");
+            while (rs.next()) 
+            {
+                Object[] filas = new Object[cantidadColumnas];
+                
+                for (int i = 0; i < cantidadColumnas; i++) 
+                {
+                    filas[i] = rs.getObject(i + 1);
+                }
+                
+                modelo.addRow(filas);
+            }
+        } 
+        catch (Exception e) 
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }       
+        
+        tbEvaluaciones.getColumnModel().getColumn(0).setMinWidth(0);
+        tbEvaluaciones.getColumnModel().getColumn(0).setMaxWidth(0);
+    }
+    
+    private void agregarEvaluacion()
+    {
+        
+        if (txtNumeroEvaluacion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtNotaEvaluacion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtPorcentajeEvaluacion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtDocente.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtMateria.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtDescripcion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        else
+        {
+            
+            controlador_evalucion.setidEvaluacion(txtNumeroEvaluacion.getText());
+            controlador_evalucion.setNotaEvaluacion(txtNotaEvaluacion.getText());
+            controlador_evalucion.setPorcentajeEvaluacion(txtPorcentajeEvaluacion.getText());
+            controlador_evalucion.setDocente(txtDocente.getText());
+            controlador_evalucion.setMateria(txtMateria.getText());
+            controlador_evalucion.setDescripcion(txtDescripcion.getText());
+            funciones.agregarEvaluacion(controlador_evaluacion);
+            btnActualizar.setEnabled(false);
+            btnEliminar.setEnabled(false);
+            
+        }
+    }
+    
+    private void actualizarEvaluacion()
+    {
+        if (txtNumeroEvaluacion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtNotaEvaluacion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtPorcentajeEvaluacion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtDocente.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtMateria.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        if (txtDescripcion.getText().isEmpty()) 
+        {
+            
+            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        else
+        {
+            int fila = tbEvaluaciones.getSelectedRow();
+            int idEvaluacion = Integer.parseInt(tbEvaluaciones.getValueAt(fila, 0).toString());
+            controlador_evaluaciones.setNumeroEvaluacion(idEvaluacion);
+            controlador_evaluaciones.setNombreMateria(txtMateria.getText());
+            funciones.actualizarEvaluacion(controlador_evaluaciones);
+            
+        }
+    }
+    private void eliminarEvaluacion()
+    {
+        int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres eliminar esta evaluación?", "Eliminar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (respuesta == JOptionPane.YES_OPTION) 
+        {
+            int fila = tbEvaluaciones.getSelectedRow();
+            int idEvaluacion = Integer.parseInt(tbEvaluaciones.getValueAt(fila, 0).toString());
+            controlador_evaluaciones.setCodigoMateria(idMateria);
+            funciones.eliminarEvaluciones(controlador_evaluacion);
 
+        }
+    } 
+    
+    
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-      
+      agregarEvaluacion();
+      mostrarEvaluaciones();
+      limpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        limpiar();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+        actualizarEvaluacion();
+        mostrarEvaluaciones();
+        limpiarCampos();
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMateriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMateriaActionPerformed
-protected void limpiar(){
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        eliminarEvaluacion();
+        mostrarEvaluaciones();
+        limpiarCampos();
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+protected void limpiarCampos(){
     txtNumeroEvaluacion.setText("");
     txtPorcentajeEvaluacion.setText("");
     txtNotaEvaluacion.setText("");
@@ -229,26 +456,39 @@ protected void limpiar(){
     protected boolean validarNumeros(char letra){
     return Character.isLetter(letra);
     }
-    //método registrar grado a tabla
-    protected void registrarEvaluacionTabla(Evaluacion evaluacion){
-    try{
-        //se obtiene el modelo del control tabla del formulario
-        model = (DefaultTableModel) tbEvaluaciones.getModel();
-        //Se debe hacer un objeto con el numero de columnas de la tabla
-        Object[] fila=new Object[6];
-        //se debe llenar cada dato de las columnas de la tabla
-        fila[0]=evaluacion.getNumeroEvaluacion();
-        fila[1]=evaluacion.getPorcentajeEvaluacion();
-        fila[2]=evaluacion.getNotaEvaluacion();
-        fila[3]=evaluacion.getCodigoDocente();
-        fila[4]=evaluacion.getMateria();
-        fila[5]=evaluacion.getDescripcion();
+
+    private void tbEvaluacionMouseClicked(java.awt.event.MouseEvent evt) {                                       
         
-        model.addRow(fila);
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(true);
         
-    }catch(Exception e){
-    }
-    }
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            Conexion con = new Conexion();
+            Connection conn = con.conectar();
+            
+            int fila = tbEvaluaciones.getSelectedRow();
+            String numeroEvaluacion = tbEvaluaciones.getValueAt(fila, 0).toString();
+            
+            ps = conn.prepareStatement("SELECT * FROM evaluacion WHERE idEvaluacion = ?");
+            ps.setString(1, numeroEvaluacion);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) 
+            {
+                txtNumeroEvaluacion.setText(rs.getString("numeroEvaluacion"));
+                
+            }
+        } 
+        catch (Exception e) 
+        {
+              JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }     
+    
       public static void main(String args[]) {
         
         
@@ -286,7 +526,8 @@ protected void limpiar(){
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 /**
  *
- * @author diani
+ * @author yanis
  */
 
 import javax.swing.JOptionPane;
@@ -336,6 +336,10 @@ public class PnlPersona extends javax.swing.JPanel {
         {
             
             controlador_persona.setNombres(txtNombres.getText());
+            controlador_persona.setApellidos(txtApellidos.getText());
+            controlador_persona.setTelefono(txtTelefono.getText());
+            controlador_persona.setDireccion(txtDireccion.getText());
+            controlador_persona.setCorreoElectronico(txtCorreo.getText());
             funciones.agregarNombres(controlador_persona);
             btnActualizar.setEnabled(false);
             btnEliminar.setEnabled(false);
