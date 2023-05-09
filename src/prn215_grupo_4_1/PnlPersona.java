@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 import Clases.Colegio.Persona;
 import java.awt.Window;
 import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -117,6 +119,16 @@ public class PnlPersona extends javax.swing.JPanel {
         txtDireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtCorreo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyTyped(evt);
+            }
+        });
 
         tbPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -433,6 +445,36 @@ public class PnlPersona extends javax.swing.JPanel {
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+        // Validando la entrada de correo electronico.
+        if(txtCorreo.getText().length()>49){
+            evt.consume(); //hace que esa pulsación de tecla se rechace.
+
+        
+        }
+    }
+// Metodo para validar la entrada de correo electronico.
+    public boolean ValidarMail(String correo) {
+        // Patron para validar el email
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        mat = pat.matcher(correo);
+        if (mat.find()){
+            return true;
+        } else {
+            return false;
+        }
+    }//GEN-LAST:event_txtCorreoKeyTyped
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+         // Validando correo.
+        if(!ValidarMail(txtCorreo.getText())){
+            JOptionPane.showMessageDialog(null, "Ingresa un correo valido.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtCorreo.requestFocus();
+        }
+    }//GEN-LAST:event_txtCorreoFocusLost
         private void tbPersonaMouseClicked(java.awt.event.MouseEvent evt) {                                       
         
         btnActualizar.setEnabled(true);
@@ -483,13 +525,13 @@ public class PnlPersona extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnlPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnlPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnlPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(panelEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnlPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         
@@ -497,7 +539,7 @@ public class PnlPersona extends javax.swing.JPanel {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelEvaluacion().setVisible(true);
+                new PnlPersona().setVisible(true);
             }
         });
   }
