@@ -5,8 +5,16 @@
  */
 package Clases.Colegio;
 
+import funciones.funciones_estudiante;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,32 +25,29 @@ public class Estudiante extends Persona {
     private int codigoEstudiante;
     private String estadoAprobacion;
     private String nombreEncargado;
-    private String grado;
     private String idGrado;
     // Declaracion del constructor por defecto.
     public Estudiante() {
     }
     //Declaracion de constructores con parametros.
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, String idGrado) {
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String idGrado) {
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
         this.nombreEncargado = nombreEncargado;
-        this.grado = grado;
         this.idGrado = idGrado;
     }
 
-    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String grado, String idGrado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, Date fechaRegistro) {
+    public Estudiante(int codigoEstudiante, String estadoAprobacion, String nombreEncargado, String idGrado, String nombres, String apellidos, String telefono, String direccion, String correoElectronico, int codigoPersona, Date fechaRegistro) {
         super(nombres, apellidos, telefono, direccion, correoElectronico, codigoPersona, fechaRegistro);
         this.codigoEstudiante = codigoEstudiante;
         this.estadoAprobacion = estadoAprobacion;
         this.nombreEncargado = nombreEncargado;
-        this.grado = grado;
         this.idGrado = idGrado;
     }
 
   
-   
+    
      // Metodos get y set.
     public int getCodigoEstudiante() {
         return codigoEstudiante;
@@ -106,14 +111,6 @@ public class Estudiante extends Persona {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
-    }
-
-    public String getGrado() {
-        return grado;
-    }
-
-    public void setGrado(String grado) {
-        this.grado = grado;
     }
 
     public String getIdGrado() {

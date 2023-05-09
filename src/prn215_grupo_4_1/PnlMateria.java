@@ -351,6 +351,7 @@ public class PnlMateria extends javax.swing.JPanel {
 
     private void tbMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMateriaMouseClicked
         
+        btnAgregar.setEnabled(false);
         btnActualizar.setEnabled(true);
         btnEliminar.setEnabled(true);
         
