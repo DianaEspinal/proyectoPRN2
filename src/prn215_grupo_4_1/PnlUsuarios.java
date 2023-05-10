@@ -56,8 +56,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
         cmbPersona = new javax.swing.JComboBox<>();
+        txtClave = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
@@ -94,6 +94,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
 
         cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        txtClave.setText("jPasswordField1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,8 +112,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                            .addComponent(txtClave))))
+                            .addComponent(txtClave)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(76, 76, 76))
         );
         jPanel1Layout.setVerticalGroup(
@@ -189,7 +191,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -215,7 +217,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -338,7 +340,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
     private void agregarUsuario()
     {
         
-        if (txtUsuario.getText().isEmpty() || txtClave.getText().isEmpty() ||  cmbPersona.getSelectedIndex() == -1) 
+        if (txtUsuario.getText().isEmpty() || txtClave2.getText().isEmpty() ||  cmbPersona.getSelectedIndex() == -1) 
         {
             JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
         }
@@ -352,7 +354,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
             //System.out.print(idPersona);
 
             controlador_usuario.setUsuario(txtUsuario.getText());
-            controlador_usuario.setClave(txtClave.getText()); 
+            controlador_usuario.setClave(txtClave2.getText()); 
             funciones.agregarUsuario(controlador_usuario);
             //Se actualizan la lista de personas que no han sido asignadas como estudiante o docente
             cmbPersona.setModel(funciones.llenarPersonas());
@@ -419,7 +421,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbUsuarios;
-    private javax.swing.JTextField txtClave;
+    private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
