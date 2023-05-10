@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package funciones;
+
 import Clases.Colegio.*;
 import java.sql.*;
 import java.util.logging.Level;
@@ -18,8 +19,8 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author diego
  */
-public class funciones_estudiante extends Conexion {
-      
+public class funciones_docente extends Conexion{
+    
     public DefaultComboBoxModel llenarPersonas()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -42,16 +43,16 @@ public class funciones_estudiante extends Conexion {
         return modelo;
     }
     
-    public DefaultComboBoxModel llenarGrado()
+    public DefaultComboBoxModel llenarMateria()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         try 
         {
-            PreparedStatement ps = conectar().prepareStatement("SELECT idGrado, grado FROM Grado");
+            PreparedStatement ps = conectar().prepareStatement("SELECT idMateria, nombreMateria FROM materia");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) 
             {                
-                modelo.addElement(rs.getString("grado"));
+                modelo.addElement(rs.getString("nombreMateria"));
             }
         } catch (Exception e) 
         {
@@ -61,58 +62,31 @@ public class funciones_estudiante extends Conexion {
         return modelo;
     }
     
-    /*public Persona obtenerDatosPersona(int id)
-    {
-        Persona p = new Persona();
-        try {
-            String sql = "SELECT * FROM persona WHERE idPersona = ?";
-            PreparedStatement ps = conectar().prepareCall(sql);
-            ps.setInt(1, id);
-            
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                p.setCodigoPersona(rs.getInt("idPersona"));
-                p.setNombres(rs.getString("nombres"));
-                p.setApellidos(rs.getString("apellidos"));
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Socorro");
-            }
-            
-        } catch (Exception e) 
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return p;
-    }*/
-    
-    public boolean agregarEstudiante(Estudiante agregar)
+    public boolean agregarDocente(Docente agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
         //String sqlVerify = "SELECT * FROM WHERE id = ?";
-        String sql = "INSERT INTO  estudiante(idEstudiante, idGrado, estadoAprobacion, nombreEncargado)\n" +
-                    "SELECT * FROM (SELECT ? AS idEstudiante, ? AS idGrado, 'En proceso' AS estadoAprobacion, ? AS nombreEncargado) AS tmp\n" +
+        String sql = "INSERT INTO  docente(idDocente, idMateria)\n" +
+                    "SELECT * FROM (SELECT ? AS idDocente, ? AS idMateria) AS tmp\n" +
                     "WHERE NOT EXISTS (\n" +
-                    "SELECT idDocente FROM docente WHERE idDocente = ?\n" +
+                    "SELECT idEstudiante FROM estudiante WHERE idEstudiante = ?\n" +
                     ");";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setInt(1, agregar.getCodigoEstudiante());
-            ps.setString(2, agregar.getIdGrado());
-            ps.setString(3, agregar.getNombreEncargado());
-            ps.setInt(4, agregar.getCodigoEstudiante());
+            ps.setInt(1, agregar.getIdDocente());
+            ps.setInt(2, agregar.getIdMateria());
+            ps.setInt(3, agregar.getIdDocente());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Estudiante agregado correctamente");
+            JOptionPane.showMessageDialog(null, "Docente agregado correctamente");
             return true;
             
         } catch (SQLException e) 
         {
-            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un Estudiante", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un Docente", "Advertencia",JOptionPane.WARNING_MESSAGE);
             System.out.println(e);
             return false;
         } 
@@ -127,25 +101,22 @@ public class funciones_estudiante extends Conexion {
         }
     }
     
-    public boolean actualizarEstudiante(Estudiante actualizar)
+    public boolean actualizarDocente(Docente actualizar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "UPDATE estudiante SET idGrado = ?, nombreEncargado = ? WHERE idEstudiante = ?;";
+        String sql = "UPDATE docente SET idMateria = ? WHERE idDocente = ?";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, actualizar.getIdGrado());
-            //ps.setString(2, actualizar.getEstadoAprobacion());
-            ps.setString(2, actualizar.getNombreEncargado());    
-            ps.setInt(3, actualizar.getCodigoEstudiante());
-            System.out.println(actualizar.getIdGrado());
-            System.out.println(actualizar.getNombreEncargado());
-            System.out.println(actualizar.getCodigoEstudiante());
+            ps.setInt(1, actualizar.getIdMateria());            
+            ps.setInt(2, actualizar.getIdDocente());
+            //System.out.println(actualizar.getIdMateria());
+            //System.out.println(actualizar.getIdDocente());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Estudiante actualizado correctamente");
+            JOptionPane.showMessageDialog(null, "Docente actualizado correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -164,19 +135,19 @@ public class funciones_estudiante extends Conexion {
         }
     }
     
-    public boolean eliminarEstudiante(Estudiante borrar)
+    public boolean eliminarDocente(Docente borrar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "DELETE FROM estudiante WHERE idEstudiante = ?";
+        String sql = "DELETE FROM docente WHERE idDocente = ?";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setInt(1, borrar.getCodigoEstudiante());            
+            ps.setInt(1, borrar.getIdDocente());            
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Estudiante eliminado correctamente");
+            JOptionPane.showMessageDialog(null, "Docente eliminado correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -216,14 +187,14 @@ public class funciones_estudiante extends Conexion {
         return id;
     }
     
-    public String getIdGrado (String grado)
+    public String getIdMateria (String materia)
     {        
         String id = null;
         try{
             
-            String sql = "SELECT idGrado FROM grado  WHERE grado = ?;";
+            String sql = "SELECT idMateria FROM materia  WHERE nombreMateria = ?;";
             PreparedStatement cmd = conectar().prepareStatement(sql);
-            cmd.setString(1, grado);
+            cmd.setString(1, materia);
             
             ResultSet rs = cmd.executeQuery();
             while(rs.next()){

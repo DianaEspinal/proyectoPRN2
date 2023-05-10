@@ -15,13 +15,11 @@ public class PRN215_GRUPO_4_1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        /*panelGrado panel = new panelGrado();
-        panel.show();*/
-        frmElegirOpcion grado = new frmElegirOpcion();
-        grado.show();
-        /*frmGrado grado = new frmGrado();
-        grado.show();*/
+
+        frmElegirOpcion opcion = new frmElegirOpcion();
+        opcion.show();
+        opcion.setLocationRelativeTo(null);
+
     }
 
     

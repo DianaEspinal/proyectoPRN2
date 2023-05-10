@@ -14,26 +14,30 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author diego
  */
-public class funciones_materia extends Conexion {
+public class funciones_persona extends Conexion {
     
-    public boolean agregarMateria(Materia agregar)
+    public boolean agregarPersona(Persona agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "INSERT INTO materia(nombreMateria) VALUES (?);";
+        String sql = "INSERT INTO persona(nombres, apellidos, telefono, direccion, correoElectronico, fechaRegistro) VALUES (?, ?, ?, ?, ?, CURRENT_DATE());";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, agregar.getNombreMateria());
+            ps.setString(1, agregar.getNombres());
+            ps.setString(2, agregar.getApellidos());
+            ps.setString(3, agregar.getTelefono());
+            ps.setString(4, agregar.getDireccion());
+            ps.setString(5, agregar.getCorreoElectronico());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Materia agregada correctamente");
+            JOptionPane.showMessageDialog(null, "Persona agregada correctamente");
             return true;
             
         } catch (SQLException e) 
         {
-            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de una materia", "Advertencia",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No puede repetir el codigo de una persona", "Advertencia",JOptionPane.WARNING_MESSAGE);
             System.out.println(e);
             return false;
         } 
@@ -48,20 +52,24 @@ public class funciones_materia extends Conexion {
         }
     }
     
-    public boolean actualizarMateria(Materia actualizar)
+    public boolean actualizarPersona(Persona actualizar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "UPDATE materia SET nombreMateria = ? WHERE idMateria = ?;";
+        String sql = "UPDATE persona SET nombres = ?, apellidos = ?, telefono = ?, direccion = ?, correoElectronico = ? WHERE idPersona = ?; ";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, actualizar.getNombreMateria());
-            ps.setInt(2, actualizar.getCodigoMateria());            
+            ps.setString(1, actualizar.getNombres());
+            ps.setString(2, actualizar.getApellidos());   
+            ps.setString(3, actualizar.getTelefono());
+            ps.setString(4, actualizar.getDireccion());
+            ps.setString(5, actualizar.getCorreoElectronico());
+            ps.setInt(6, actualizar.getCodigoPersona());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Materia actualizada correctamente");
+            JOptionPane.showMessageDialog(null, "Datos de persona actualizada correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -80,19 +88,19 @@ public class funciones_materia extends Conexion {
         }
     }
     
-     public boolean eliminarMateria(Materia borrar)
+     public boolean eliminarPersona(Persona borrar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "DELETE FROM materia WHERE idMateria = ?;";
+        String sql = "DELETE FROM persona WHERE idPersona = ?;";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setInt(1, borrar.getCodigoMateria());            
+            ps.setInt(1, borrar.getCodigoPersona());            
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Materia eliminada correctamente");
+            JOptionPane.showMessageDialog(null, "Persona eliminada correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -110,4 +118,5 @@ public class funciones_materia extends Conexion {
             }
         }
     }
+     
 }

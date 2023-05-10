@@ -5,25 +5,22 @@
  */
 package prn215_grupo_4_1;
 import java.awt.Color;
-import javax.swing.*;
 import Clases.Colegio.*;
 import funciones.*;
 import java.awt.Component;
 import java.awt.Font;
 import java.sql.*;
-import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import Clases.Colegio.Materia;
+import java.awt.event.KeyEvent;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author diani
  */
 
-import javax.swing.JOptionPane;
-import Clases.Colegio.Materia;
-import java.awt.Window;
-import java.awt.event.KeyEvent;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
+
 public class PnlMateria extends javax.swing.JPanel {
 
     /* Declaracion de variables */
@@ -236,6 +233,7 @@ public class PnlMateria extends javax.swing.JPanel {
             
             modelo.addColumn("Codigo Materia");
             modelo.addColumn("Nombre de la materia");
+            
             while (rs.next()) 
             {
                 Object[] filas = new Object[cantidadColumnas];
@@ -325,28 +323,35 @@ public class PnlMateria extends javax.swing.JPanel {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Ingresar solo letras.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_txtMateriaKeyTyped
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        
         agregarMateria();
         mostrarMaterias();
         limpiarCampos();
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        
         actualizarMateria();
         mostrarMaterias();
         limpiarCampos();
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
+        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        
         eliminarMateria();
         mostrarMaterias();
         limpiarCampos();
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMateriaMouseClicked
