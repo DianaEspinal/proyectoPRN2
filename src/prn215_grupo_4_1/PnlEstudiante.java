@@ -154,7 +154,6 @@ public class PnlEstudiante extends javax.swing.JPanel {
                                         .addComponent(cmbPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblTelefonoEstudiante)
@@ -231,8 +230,10 @@ public class PnlEstudiante extends javax.swing.JPanel {
         btnAgregar.setBackground(new java.awt.Color(255, 196, 0));
         btnAgregar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(0, 0, 122));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-mas (1).png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -244,6 +245,7 @@ public class PnlEstudiante extends javax.swing.JPanel {
         btnActualizar.setForeground(new java.awt.Color(0, 0, 122));
         btnActualizar.setText("Actualizar");
         btnActualizar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -255,6 +257,7 @@ public class PnlEstudiante extends javax.swing.JPanel {
         btnEliminar.setForeground(new java.awt.Color(0, 0, 122));
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
