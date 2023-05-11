@@ -6,11 +6,7 @@
 package funciones;
 import Clases.Colegio.*;
 import java.sql.*;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import com.mysql.cj.jdbc.JdbcPreparedStatement;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -19,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class funciones_usuario extends Conexion{
     
+    //Función que ayuda a llenar el modelo del comboBox para que este tenga información de la base
     public DefaultComboBoxModel llenarPersonas()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -40,12 +37,13 @@ public class funciones_usuario extends Conexion{
         return modelo;
     }
     
+    //Función para agregar un nuevo usuario con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean agregarUsuario(Usuario agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        //String sqlVerify = "SELECT * FROM WHERE id = ?";
+        //Se verifica que el idPersona no existe en Usuario(idUsuario) ya que como es herencia, idUsuario es foranea de idPersona
         String sql = "INSERT INTO  usuario(idUsuario, usuario, clave)\n" +
                     "SELECT * FROM (SELECT ? AS idUsuario, ? AS usuario, ? AS clave) AS tmp\n" +
                     "WHERE NOT EXISTS (\n" +
@@ -80,6 +78,7 @@ public class funciones_usuario extends Conexion{
         }
     }
     
+    //Función para actualizar un usuario con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean actualizarUsuario(Usuario actualizar)
     {
         PreparedStatement ps = null;
@@ -115,6 +114,7 @@ public class funciones_usuario extends Conexion{
         }
     }
     
+    //Función para eliminar un usuario
     public boolean eliminarUsuario(Usuario borrar)
     {
         PreparedStatement ps = null;
@@ -146,6 +146,7 @@ public class funciones_usuario extends Conexion{
         }
     }
     
+    //Función que ayuda a encontrar el idPersona del nombre seleccionado del comboBox
     public Integer getIdPersona (String nombreCompleto)
     {        
         int id = 0;
@@ -166,4 +167,5 @@ public class funciones_usuario extends Conexion{
         }
         return id;
     }
+    
 }

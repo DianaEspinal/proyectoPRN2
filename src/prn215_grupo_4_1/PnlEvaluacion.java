@@ -38,22 +38,25 @@
     DefaultTableModel model = new DefaultTableModel();
     // Se hace llamado de el controlador y las funciones SQL
     Evaluacion controlador_evaluacion = new Evaluacion();
-    //funciones_evaluacion funciones = new funciones_evaluacion();
-    Component rootPane = null;
+    funciones_evaluacion funciones = new funciones_evaluacion();
+
     /**
      * Creates new form PnlEvaluacion
      */
     public PnlEvaluacion() {
         initComponents();
         mostrarEvaluaciones();
-        btnActualizar.setEnabled(false);
-        btnEliminar.setEnabled(false);
+        //Se llenan los comboBoxes con los datos de las otras tablas - llaves foraneas
+        cmbDocente.setModel(funciones.llenarDocentes());
+        txtPorcentaje.setEnabled(false);
+        txtPorcentaje.setText("25.00");
         tbEvaluaciones.getTableHeader().setOpaque(false);
         tbEvaluaciones.getTableHeader().setBackground(new Color(183, 35, 95));
         tbEvaluaciones.getTableHeader().setForeground(Color.WHITE);
         tbEvaluaciones.getTableHeader().setFont(new Font ("Dialog", Font.BOLD, 15));
         tbEvaluaciones.setFont(new Font ("Dialog", Font.PLAIN, 12));
-        
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
     }
     
 
@@ -66,27 +69,6 @@
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        txtEncargado = new javax.swing.JTextField();
-        lblApellidosEstudiante = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
-        lblDireccionEstudiante = new javax.swing.JLabel();
-        lblEncargado = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        lblTelefonoEstudiante = new javax.swing.JLabel();
-        cmbGrado = new javax.swing.JComboBox<>();
-        cmbPersona = new javax.swing.JComboBox<>();
-        txtTelefono = new javax.swing.JFormattedTextField();
-        lblCodGrado = new javax.swing.JLabel();
-        lblCodigoEstudiante = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
-        lblCorreoEstu = new javax.swing.JLabel();
-        lblNombresEstudiante = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btnAgregar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbEvaluaciones = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -99,197 +81,9 @@
         lblNombresEstudiante1 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de estudiante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
-
-        lblApellidosEstudiante.setText("Apellido:");
-
-        lblDireccionEstudiante.setText("Dirección:");
-
-        lblEncargado.setText("Encargado:");
-
-        lblTelefonoEstudiante.setText("Telefono:");
-
-        cmbGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbPersona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbPersonaActionPerformed(evt);
-            }
-        });
-
-        try {
-            txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        lblCodGrado.setText("Grado:");
-
-        lblCodigoEstudiante.setText("Nombre de persona:");
-
-        lblCorreoEstu.setText("Correo Electronico:");
-
-        lblNombresEstudiante.setText("Nombre:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblCorreoEstu)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblCodigoEstudiante)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(1, 1, 1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTelefonoEstudiante)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblNombresEstudiante)
-                                        .addGap(10, 10, 10)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtNombre)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblDireccionEstudiante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblEncargado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblApellidosEstudiante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(lblCodGrado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCodigoEstudiante)
-                    .addComponent(cmbPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTelefonoEstudiante)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblNombresEstudiante)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblApellidosEstudiante)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDireccionEstudiante)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblCorreoEstu)
-                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblEncargado)
-                        .addComponent(txtEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCodGrado)
-                    .addComponent(cmbGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
-
-        btnAgregar.setBackground(new java.awt.Color(255, 196, 0));
-        btnAgregar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(0, 0, 122));
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-mas (1).png"))); // NOI18N
-        btnAgregar.setText("Agregar");
-        btnAgregar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-
-        btnActualizar.setBackground(new java.awt.Color(255, 196, 0));
-        btnActualizar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(0, 0, 122));
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setBackground(new java.awt.Color(255, 196, 0));
-        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(0, 0, 122));
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 10, Short.MAX_VALUE))
-        );
+        btnAgregar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -309,20 +103,20 @@
                 return types [columnIndex];
             }
         });
+        tbEvaluaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEvaluacionesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbEvaluaciones);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Evaluación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Evaluación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(204, 204, 204))); // NOI18N
 
         lblTelefonoEstudiante1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblTelefonoEstudiante1.setText("Descripción:");
 
         cmbDocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbDocente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbDocenteActionPerformed(evt);
-            }
-        });
 
         lblCodigoEstudiante1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblCodigoEstudiante1.setText("Docente de la evaluación: ");
@@ -338,7 +132,7 @@
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblCorreoEstu1)
@@ -356,16 +150,16 @@
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNumeroEvaluacion, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(19, 19, 19))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigoEstudiante1)
                     .addComponent(cmbDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblTelefonoEstudiante1)
@@ -375,31 +169,46 @@
                             .addComponent(lblNombresEstudiante1)
                             .addComponent(txtNumeroEvaluacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreoEstu1)
                     .addComponent(txtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Funciones"));
 
-        jButton1.setBackground(new java.awt.Color(255, 196, 0));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 122));
-        jButton1.setText("Agregar");
+        btnAgregar.setBackground(new java.awt.Color(255, 196, 0));
+        btnAgregar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(0, 0, 122));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(255, 196, 0));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 122));
-        jButton2.setText("Actualizar");
+        btnActualizar.setBackground(new java.awt.Color(255, 196, 0));
+        btnActualizar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(0, 0, 122));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(255, 196, 0));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 122));
-        jButton3.setText("Eliminar");
-        jButton3.setToolTipText("");
+        btnEliminar.setBackground(new java.awt.Color(255, 196, 0));
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(0, 0, 122));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setToolTipText("");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -408,20 +217,20 @@
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -432,12 +241,12 @@
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,41 +261,70 @@
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonaActionPerformed
-        //Al momento de cambiar la persona del combobox
-        ChangeValue();
-    }//GEN-LAST:event_cmbPersonaActionPerformed
+    private void tbEvaluacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEvaluacionesMouseClicked
+        
+        btnAgregar.setEnabled(false);
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            Conexion con = new Conexion();
+            Connection conn = con.conectar();
+            
+            int fila = tbEvaluaciones.getSelectedRow();
+            String idEvaluacion = tbEvaluaciones.getValueAt(fila, 0).toString();
+            
+            ps = conn.prepareStatement("SELECT evaluaciones.idEvaluacion, docentes.idDocente, CONCAT(personas.nombres, ' ', personas.apellidos) AS nombrecompleto, evaluaciones.numeroEvaluacion, evaluaciones.descripcion, evaluaciones.porcentajeEvaluacion\n" +
+                                        "FROM evaluacion evaluaciones\n" +
+                                        "INNER JOIN docente docentes ON evaluaciones.idDocente = docentes.idDocente\n" +
+                                        "INNER JOIN persona personas ON docentes.idDocente = personas.idPersona\n" +
+                                        "WHERE evaluaciones.idEvaluacion = ?;");
+            ps.setString(1, idEvaluacion);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) 
+            {
+                txtDescripcion.setText(rs.getString("descripcion"));
+                txtNumeroEvaluacion.setText(rs.getString("numeroEvaluacion"));
+                cmbDocente.setSelectedItem(rs.getString("nombrecompleto"));
+                
+            }
+        } 
+        catch (Exception e) 
+        {
+              JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_tbEvaluacionesMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        agregarEstudiante();
-        mostrarEstudiantes();
+        agregarEvaluacion();
+        mostrarEvaluaciones();
         limpiarCampos();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        actualizarEstudiante();
-        mostrarEstudiantes();
+        actualizarEvaluacion();
+        mostrarEvaluaciones();
         limpiarCampos();
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnAgregar.setEnabled(true);
-        cmbPersona.setEnabled(true);
+        //cmbDocente.setEnabled(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        eliminarEstudiante();
-        mostrarEstudiantes();
+        eliminarEvaluacion();
+        mostrarEvaluaciones();
         limpiarCampos();
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnAgregar.setEnabled(true);
-        cmbPersona.setEnabled(true);
+        //cmbDocente.setEnabled(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void cmbDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDocenteActionPerformed
-        //Al momento de cambiar la persona del combobox
-        ChangeValue();
-    }//GEN-LAST:event_cmbDocenteActionPerformed
+    
     /* Creacion de las diferentes funciones para mandar los datos capturados de los textboxes al controlador y ser mandados a las funciones SQL */
     void mostrarEvaluaciones()
     {
@@ -501,7 +339,11 @@
             Conexion conn = new Conexion();
             Connection con = conn.conectar();
             
-            String sql = "SELECT * FROM evaluaciones;"; 
+            String sql = "SELECT evaluaciones.idEvaluacion, docentes.idDocente, CONCAT(personas.nombres, ' ', personas.apellidos) AS nombrecompleto, evaluaciones.numeroEvaluacion, evaluaciones.descripcion, evaluaciones.porcentajeEvaluacion\n" +
+                        "FROM evaluacion evaluaciones\n" +
+                        "INNER JOIN docente docentes ON evaluaciones.idDocente = docentes.idDocente\n" +
+                        "INNER JOIN persona personas ON docentes.idDocente = personas.idPersona;"; 
+            
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             
@@ -509,11 +351,12 @@
             int cantidadColumnas = rsMd.getColumnCount();
             
             modelo.addColumn("Codigo evaluacion");
-            modelo.addColumn("Nota de evaluacion");
-            modelo.addColumn("Porcentaje de evaluacion");
-            modelo.addColumn("Docente");
-            modelo.addColumn("Materia");
+            modelo.addColumn("Codigo Docente");
+            modelo.addColumn("Nombre del docente");
+            modelo.addColumn("Número de evaluación");
             modelo.addColumn("Descripcion");
+            modelo.addColumn("Porcentaje Evaluacion");
+            
             while (rs.next()) 
             {
                 Object[] filas = new Object[cantidadColumnas];
@@ -533,42 +376,14 @@
         
         tbEvaluaciones.getColumnModel().getColumn(0).setMinWidth(0);
         tbEvaluaciones.getColumnModel().getColumn(0).setMaxWidth(0);
+        tbEvaluaciones.getColumnModel().getColumn(1).setMinWidth(0);
+        tbEvaluaciones.getColumnModel().getColumn(1).setMaxWidth(0);
     }
     
     private void agregarEvaluacion()
     {
-        
-        if (txtNumeroEvaluacion.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtNotaEvaluacion.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtPorcentajeEvaluacion.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtDocente.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtMateria.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtDescripcion.getText().isEmpty()) 
+                
+        if (txtDescripcion.getText().isEmpty() || txtNumeroEvaluacion.getText().isEmpty() || cmbDocente.getSelectedIndex() == -1) 
         {
             
             JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
@@ -577,52 +392,25 @@
         else
         {
             
-            /*controlador_evalucion.setidEvaluacion(txtNumeroEvaluacion.getText());
-            controlador_evalucion.setNotaEvaluacion(txtNotaEvaluacion.getText());
-            controlador_evalucion.setPorcentajeEvaluacion(txtPorcentajeEvaluacion.getText());
-            controlador_evalucion.setDocente(txtDocente.getText());
-            controlador_evalucion.setMateria(txtMateria.getText());
-            controlador_evalucion.setDescripcion(txtDescripcion.getText());
+            // Obtener el id del grado seleccionado en el comboBox
+            int idDocente = funciones.getIdPersona(cmbDocente.getItemAt(cmbDocente.getSelectedIndex()));
+            controlador_evaluacion.setCodigoDocente(idDocente);
+            
+            System.out.print(idDocente);
+            
+            controlador_evaluacion.setNumeroEvaluacion(Integer.parseInt(txtNumeroEvaluacion.getText()));
+            controlador_evaluacion.setDescripcion(txtDescripcion.getText());
+            controlador_evaluacion.setPorcentajeEvaluacion(Double.parseDouble(txtPorcentaje.getText()));
             funciones.agregarEvaluacion(controlador_evaluacion);
             btnActualizar.setEnabled(false);
-            btnEliminar.setEnabled(false);*/
+            btnEliminar.setEnabled(false);
             
         }
     }
     
     private void actualizarEvaluacion()
     {
-        if (txtNumeroEvaluacion.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtNotaEvaluacion.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtPorcentajeEvaluacion.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtDocente.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtMateria.getText().isEmpty()) 
-        {
-            
-            JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
-            
-        }
-        if (txtDescripcion.getText().isEmpty()) 
+        if (txtDescripcion.getText().isEmpty() || txtNumeroEvaluacion.getText().isEmpty() || cmbDocente.getSelectedIndex() == -1) 
         {
             
             JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
@@ -632,12 +420,17 @@
         {
             int fila = tbEvaluaciones.getSelectedRow();
             int idEvaluacion = Integer.parseInt(tbEvaluaciones.getValueAt(fila, 0).toString());
-            /*controlador_evaluaciones.setNumeroEvaluacion(idEvaluacion);
-            controlador_evaluaciones.setNombreMateria(txtMateria.getText());
-            funciones.actualizarEvaluacion(controlador_evaluaciones);*/
+            controlador_evaluacion.setCodigoEvaluacion(idEvaluacion);
+            int idDocente = funciones.getIdPersona(cmbDocente.getSelectedItem().toString());
+            controlador_evaluacion.setCodigoDocente(idDocente);
+            System.out.print(idDocente);
+            controlador_evaluacion.setNumeroEvaluacion(Integer.parseInt(txtNumeroEvaluacion.getText()));
+            controlador_evaluacion.setDescripcion(txtDescripcion.getText());
+            funciones.actualizarEvaluacion(controlador_evaluacion);
             
         }
     }
+    
     private void eliminarEvaluacion()
     {
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Estás seguro que quieres eliminar esta evaluación?", "Eliminar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -645,93 +438,22 @@
         {
             int fila = tbEvaluaciones.getSelectedRow();
             int idEvaluacion = Integer.parseInt(tbEvaluaciones.getValueAt(fila, 0).toString());
-            /*controlador_evaluaciones.setCodigoMateria(idMateria);
-            funciones.eliminarEvaluciones(controlador_evaluacion);*/
+            controlador_evaluacion.setCodigoEvaluacion(idEvaluacion);
+            funciones.eliminarEvaluacion(controlador_evaluacion);
 
         }
     } 
     
-    protected void limpiarCampos(){
-    txtNumeroEvaluacion.setText("");
-    txtPorcentajeEvaluacion.setText("");
-    txtNotaEvaluacion.setText("");
-    txtDocente.setText("");
-    txtMateria.setText("");
-    txtDescripcion.setText("");
+    private void limpiarCampos()
+    {
+        txtNumeroEvaluacion.setText("");        
+        txtDescripcion.setText("");
     }
     
     
     protected boolean validarNumeros(char letra){
-    return Character.isLetter(letra);
+        return Character.isLetter(letra);
     }
-
-    private void tbEvaluacionMouseClicked(java.awt.event.MouseEvent evt) {                                       
-        
-        btnActualizar.setEnabled(true);
-        btnEliminar.setEnabled(true);
-        
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        try {
-            Conexion con = new Conexion();
-            Connection conn = con.conectar();
-            
-            int fila = tbEvaluaciones.getSelectedRow();
-            String numeroEvaluacion = tbEvaluaciones.getValueAt(fila, 0).toString();
-            
-            ps = conn.prepareStatement("SELECT * FROM evaluacion WHERE idEvaluacion = ?");
-            ps.setString(1, numeroEvaluacion);
-            rs = ps.executeQuery();
-            
-            while (rs.next()) 
-            {
-                txtNumeroEvaluacion.setText(rs.getString("numeroEvaluacion"));
-                
-            }
-        } 
-        catch (Exception e) 
-        {
-              JOptionPane.showMessageDialog(null, e);
-        }
-        
-    }     
-    
-      public static void main(String args[]) {
-        
-        
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PnlEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PnlEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PnlEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PnlEvaluacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        
-        /* Create and display the form */
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PnlEvaluacion().setVisible(true);
-            }
-        });
-  }
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -739,37 +461,16 @@
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> cmbDocente;
-    private javax.swing.JComboBox<String> cmbGrado;
-    private javax.swing.JComboBox<String> cmbPersona;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblApellidosEstudiante;
-    private javax.swing.JLabel lblCodGrado;
-    private javax.swing.JLabel lblCodigoEstudiante;
     private javax.swing.JLabel lblCodigoEstudiante1;
-    private javax.swing.JLabel lblCorreoEstu;
     private javax.swing.JLabel lblCorreoEstu1;
-    private javax.swing.JLabel lblDireccionEstudiante;
-    private javax.swing.JLabel lblEncargado;
-    private javax.swing.JLabel lblNombresEstudiante;
     private javax.swing.JLabel lblNombresEstudiante1;
-    private javax.swing.JLabel lblTelefonoEstudiante;
     private javax.swing.JLabel lblTelefonoEstudiante1;
     private javax.swing.JTable tbEvaluaciones;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtEncargado;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumeroEvaluacion;
     private javax.swing.JTextField txtPorcentaje;
-    private javax.swing.JFormattedTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

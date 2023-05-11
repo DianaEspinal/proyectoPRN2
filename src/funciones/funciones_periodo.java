@@ -6,9 +6,7 @@
 package funciones;
 import Clases.Colegio.*;
 import java.sql.*;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class funciones_periodo extends Conexion {
     
+    //Función para agregar un periodo con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean agregarPeriodo(Periodo agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        //String sqlVerify = "SELECT * FROM WHERE id = ?";
         String sql = "INSERT INTO periodo(idPeriodo, numeroPeriodo) VALUES (?, ?)";
         
         try {
@@ -50,6 +48,7 @@ public class funciones_periodo extends Conexion {
         }
     }
     
+    //Función para actualizar un periodo con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean actualizarPeriodo(Periodo actualizar)
     {
         PreparedStatement ps = null;
@@ -81,7 +80,8 @@ public class funciones_periodo extends Conexion {
             }
         }
     }
-    
+
+    //Función para eliminar un periodo    
      public boolean borrarPeriodo(Periodo borrar)
     {
         PreparedStatement ps = null;

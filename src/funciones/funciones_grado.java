@@ -6,9 +6,7 @@
 package funciones;
 import Clases.Colegio.*;
 import java.sql.*;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class funciones_grado extends Conexion {
     
+    //Función para agregar un grado con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean agregarGrado(Grado agregar)
     {
         PreparedStatement ps = null;
@@ -50,6 +49,7 @@ public class funciones_grado extends Conexion {
         }
     }
     
+    //Función para actualizar un grado con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean actualizarGrado(Grado actualizar)
     {
         PreparedStatement ps = null;
@@ -82,6 +82,7 @@ public class funciones_grado extends Conexion {
         }
     }
     
+    //Función para eliminar un grado    
      public boolean borrarGrado(Grado borrar)
     {
         PreparedStatement ps = null;

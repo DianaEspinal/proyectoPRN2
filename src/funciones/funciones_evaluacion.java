@@ -6,11 +6,7 @@
 package funciones;
 import Clases.Colegio.*;
 import java.sql.*;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import com.mysql.cj.jdbc.JdbcPreparedStatement;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -19,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class funciones_evaluacion extends Conexion {
     
+    //Función que ayuda a llenar el modelo del comboBox para que este tenga información de la base
     public DefaultComboBoxModel llenarDocentes()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -40,27 +37,23 @@ public class funciones_evaluacion extends Conexion {
         return modelo;
     }
     
+    //Función para agregar una nueva evaluación con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean agregarEvaluacion(Evaluacion agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        //String sqlVerify = "SELECT * FROM WHERE id = ?";
-        String sql = "INSERT INTO  usuario(idUsuario, usuario, clave)\n" +
-                    "SELECT * FROM (SELECT ? AS idUsuario, ? AS usuario, ? AS clave) AS tmp\n" +
-                    "WHERE NOT EXISTS (\n" +
-                    "SELECT idUsuario FROM usuario WHERE idUsuario = ?\n" +
-                    ") LIMIT 1;";
+        String sql = "INSERT INTO evaluacion(idDocente, numeroEvaluacion, descripcion, porcentajeEvaluacion) VALUES (? , ?, ?, ?);";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setInt(1, agregar.getIdUsuario());
-            ps.setString(2, agregar.getUsuario());
-            ps.setString(3, agregar.getClave());
-            ps.setInt(4, agregar.getIdUsuario());
+            ps.setInt(1, agregar.getCodigoDocente());
+            ps.setInt(2, agregar.getNumeroEvaluacion());
+            ps.setString(3, agregar.getDescripcion());
+            ps.setDouble(4, agregar.getPorcentajeEvaluacion());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Usuario agregado correctamente");
+            JOptionPane.showMessageDialog(null, "Evaluacion agregado correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -80,23 +73,24 @@ public class funciones_evaluacion extends Conexion {
         }
     }
     
-    public boolean actualizarUsuario(Usuario actualizar)
+    //Función para actualizar una evaluación con datos validos a la base de datos con los datos ingresados en los txtFields
+    public boolean actualizarEvaluacion(Evaluacion actualizar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "UPDATE usuario SET usuario = ?, clave = ? WHERE idUsuario = ?;";
+        String sql = "UPDATE evaluacion SET idDocente = ?, descripcion = ?, numeroEvaluacion = ? WHERE idEvaluacion = ?;";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, actualizar.getUsuario());
-            //ps.setString(2, actualizar.getEstadoAprobacion());
-            ps.setString(2, actualizar.getClave());    
-            ps.setInt(3, actualizar.getIdUsuario());
+            ps.setInt(1, actualizar.getCodigoDocente());
+            ps.setString(2, actualizar.getDescripcion()); 
+            ps.setInt(3, actualizar.getNumeroEvaluacion());
+            ps.setInt(4, actualizar.getCodigoEvaluacion());
 
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Uusario actualizado correctamente");
+            JOptionPane.showMessageDialog(null, "Evaluación actualizada correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -115,19 +109,20 @@ public class funciones_evaluacion extends Conexion {
         }
     }
     
-    public boolean eliminarUsuario(Usuario borrar)
+    //Función para eliminar una evaluación    
+    public boolean eliminarEvaluacion(Evaluacion borrar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        String sql = "DELETE FROM usuario WHERE idUsuario = ?";
+        String sql = "DELETE FROM evaluacion WHERE idEvaluacion = ?";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setInt(1, borrar.getIdUsuario());            
+            ps.setInt(1, borrar.getCodigoEvaluacion());            
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+            JOptionPane.showMessageDialog(null, "Evaluación eliminada correctamente");
             return true;
             
         } catch (SQLException e) 
@@ -146,6 +141,7 @@ public class funciones_evaluacion extends Conexion {
         }
     }
     
+    //Función que ayuda a encontrar el idPersona del nombre seleccionado del comboBox
     public Integer getIdPersona (String nombreCompleto)
     {        
         int id = 0;
@@ -166,4 +162,5 @@ public class funciones_evaluacion extends Conexion {
         }
         return id;
     }
+    
 }
