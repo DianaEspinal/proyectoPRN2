@@ -11,6 +11,7 @@ import Clases.Colegio.*;
 import funciones.*;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
@@ -102,6 +103,12 @@ public class PnlGrado extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Grado:");
+
+        txtGrado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGradoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -381,6 +388,24 @@ public class PnlGrado extends javax.swing.JPanel {
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+if (!Character.isDigit(validar) && !(validar == KeyEvent.VK_SPACE)) {
+    evt.consume();
+    JOptionPane.showMessageDialog(rootPane, "Ingresar solo números.", "ERROR", JOptionPane.ERROR_MESSAGE);
+} else {
+    String texto = txtGrado.getText() + validar;  // Concatenamos el carácter ingresado al texto actual
+    if (!texto.isEmpty()) {
+        int numero = Integer.parseInt(texto);
+        if (numero < 0 || numero > 10) {
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo números entre 0 y 10.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
+    }//GEN-LAST:event_txtGradoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

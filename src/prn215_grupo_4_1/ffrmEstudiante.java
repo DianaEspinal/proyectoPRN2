@@ -538,11 +538,16 @@ public class ffrmEstudiante extends javax.swing.JFrame {
        
          //Validando que solo permita entrada de letras.
          char validar = evt.getKeyChar();
-          if ((Character.isDigit(validar)) && !(evt.getKeyChar() == KeyEvent.VK_SPACE))
-        {
-            evt.consume();
-             JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } 
+    if (!Character.isDigit(validar) && !(validar == KeyEvent.VK_SPACE)) {
+    evt.consume();
+    JOptionPane.showMessageDialog(rootPane, "Ingresar solo números.", "ERROR", JOptionPane.ERROR_MESSAGE);
+    } else {
+    int numero = Integer.parseInt(txtApellidosEstu.getText());
+    if (numero < 0) {
+        evt.consume();
+        JOptionPane.showMessageDialog(rootPane, "Ingresar solo números positivos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+} 
     }//GEN-LAST:event_txtApellidosEstuKeyTyped
 
     private void txtEncargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEncargadoKeyTyped
