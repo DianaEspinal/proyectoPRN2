@@ -7,11 +7,7 @@ package funciones;
 
 import Clases.Colegio.*;
 import java.sql.*;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import com.mysql.cj.jdbc.JdbcPreparedStatement;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 
 
@@ -21,6 +17,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class funciones_docente extends Conexion{
     
+    //Función que ayuda a llenar el modelo del comboBox para que este tenga información de la base
     public DefaultComboBoxModel llenarPersonas()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -43,6 +40,7 @@ public class funciones_docente extends Conexion{
         return modelo;
     }
     
+    //Función que ayuda a llenar el modelo del comboBox para que este tenga información de la base
     public DefaultComboBoxModel llenarMateria()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -62,12 +60,13 @@ public class funciones_docente extends Conexion{
         return modelo;
     }
     
+    //Función para agregar un docente con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean agregarDocente(Docente agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        //String sqlVerify = "SELECT * FROM WHERE id = ?";
+        //Se verifica que el idDocente no exista en la tabla Estudiante(idEstudiante) ya que como es por herencia, son idDocente e idEstudiante son foraneas de idPersona
         String sql = "INSERT INTO  docente(idDocente, idMateria)\n" +
                     "SELECT * FROM (SELECT ? AS idDocente, ? AS idMateria) AS tmp\n" +
                     "WHERE NOT EXISTS (\n" +
@@ -86,6 +85,7 @@ public class funciones_docente extends Conexion{
             
         } catch (SQLException e) 
         {
+            //En dado caso suceda que el idDocente se encuentre en la tabla estudiantes pero es imposible
             JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un Docente", "Advertencia",JOptionPane.WARNING_MESSAGE);
             System.out.println(e);
             return false;
@@ -101,6 +101,7 @@ public class funciones_docente extends Conexion{
         }
     }
     
+    //Función para actualizar un docente con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean actualizarDocente(Docente actualizar)
     {
         PreparedStatement ps = null;
@@ -135,6 +136,7 @@ public class funciones_docente extends Conexion{
         }
     }
     
+    //Función para eliminar un docente
     public boolean eliminarDocente(Docente borrar)
     {
         PreparedStatement ps = null;
@@ -166,6 +168,7 @@ public class funciones_docente extends Conexion{
         }
     }  
     
+    //Función que ayuda a encontrar el idPersona del nombre seleccionado del comboBox
     public Integer getIdPersona (String nombreCompleto)
     {        
         int id = 0;
@@ -187,6 +190,7 @@ public class funciones_docente extends Conexion{
         return id;
     }
     
+    //Función que ayuda a encontrar el idMateria de nombreMateria seleccionado del comboBox
     public String getIdMateria (String materia)
     {        
         String id = null;
@@ -207,4 +211,5 @@ public class funciones_docente extends Conexion{
         }
         return id;
     }
+    
 }

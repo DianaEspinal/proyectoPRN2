@@ -6,11 +6,7 @@
 package funciones;
 import Clases.Colegio.*;
 import java.sql.*;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import com.mysql.cj.jdbc.JdbcPreparedStatement;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 
 
@@ -20,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class funciones_estudiante extends Conexion {
       
+    //Función que ayuda a llenar el modelo del comboBox para que este tenga información de la base
     public DefaultComboBoxModel llenarPersonas()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -42,6 +39,7 @@ public class funciones_estudiante extends Conexion {
         return modelo;
     }
     
+    //Función que ayuda a llenar el modelo del comboBox para que este tenga información de la base
     public DefaultComboBoxModel llenarGrado()
     {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -61,38 +59,13 @@ public class funciones_estudiante extends Conexion {
         return modelo;
     }
     
-    /*public Persona obtenerDatosPersona(int id)
-    {
-        Persona p = new Persona();
-        try {
-            String sql = "SELECT * FROM persona WHERE idPersona = ?";
-            PreparedStatement ps = conectar().prepareCall(sql);
-            ps.setInt(1, id);
-            
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                p.setCodigoPersona(rs.getInt("idPersona"));
-                p.setNombres(rs.getString("nombres"));
-                p.setApellidos(rs.getString("apellidos"));
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Socorro");
-            }
-            
-        } catch (Exception e) 
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return p;
-    }*/
-    
+    //Función para agregar un estudiante con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean agregarEstudiante(Estudiante agregar)
     {
         PreparedStatement ps = null;
         
         Connection con = conectar();
-        //String sqlVerify = "SELECT * FROM WHERE id = ?";
+        //Se verifica que el idEstudiante no exista en la tabla docente(idDocente) ya que como es por herencia, son idDocente e idEstudiante son foraneas de idPersona
         String sql = "INSERT INTO  estudiante(idEstudiante, idGrado, estadoAprobacion, nombreEncargado)\n" +
                     "SELECT * FROM (SELECT ? AS idEstudiante, ? AS idGrado, 'En proceso' AS estadoAprobacion, ? AS nombreEncargado) AS tmp\n" +
                     "WHERE NOT EXISTS (\n" +
@@ -112,6 +85,7 @@ public class funciones_estudiante extends Conexion {
             
         } catch (SQLException e) 
         {
+            //En dado caso suceda que el idEstudiante se encuentre en la tabla estudiantes pero es imposible
             JOptionPane.showMessageDialog(null, "No puede repetir el codigo de un Estudiante", "Advertencia",JOptionPane.WARNING_MESSAGE);
             System.out.println(e);
             return false;
@@ -127,6 +101,7 @@ public class funciones_estudiante extends Conexion {
         }
     }
     
+    //Función para actualizar un estudiante con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean actualizarEstudiante(Estudiante actualizar)
     {
         PreparedStatement ps = null;
@@ -163,7 +138,7 @@ public class funciones_estudiante extends Conexion {
             }
         }
     }
-    
+    //Función para eliminar un estudiante    
     public boolean eliminarEstudiante(Estudiante borrar)
     {
         PreparedStatement ps = null;
@@ -194,7 +169,7 @@ public class funciones_estudiante extends Conexion {
             }
         }
     }  
-    
+    //Función que ayuda a encontrar el idPersona del nombre seleccionado del comboBox    
     public Integer getIdPersona (String nombreCompleto)
     {        
         int id = 0;
@@ -216,6 +191,7 @@ public class funciones_estudiante extends Conexion {
         return id;
     }
     
+    //Función que ayuda a encontrar el idGrado del nombre seleccionado del comboBox 
     public String getIdGrado (String grado)
     {        
         String id = null;
@@ -236,4 +212,5 @@ public class funciones_estudiante extends Conexion {
         }
         return id;
     }
+    
 }

@@ -6,9 +6,7 @@
 package funciones;
 import Clases.Colegio.*;
 import java.sql.*;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class funciones_materia extends Conexion {
     
+    //Función para agregar una materia con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean agregarMateria(Materia agregar)
     {
         PreparedStatement ps = null;
@@ -48,6 +47,7 @@ public class funciones_materia extends Conexion {
         }
     }
     
+    //Función para actualizar una materia con datos validos a la base de datos con los datos ingresados en los txtFields
     public boolean actualizarMateria(Materia actualizar)
     {
         PreparedStatement ps = null;
@@ -79,7 +79,8 @@ public class funciones_materia extends Conexion {
             }
         }
     }
-    
+
+    //Función para eliminar una materia    
      public boolean eliminarMateria(Materia borrar)
     {
         PreparedStatement ps = null;
