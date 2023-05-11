@@ -240,7 +240,7 @@ public class frmElegirOpcion extends javax.swing.JFrame {
 
     private void btnEvalucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvalucionesActionPerformed
         // TODO add your handling code here:
-        panelEvaluacion jpanel2 = new panelEvaluacion ();
+        PnlEvaluacion jpanel2 = new PnlEvaluacion ();
         jpanel2.setSize(774, 537);
         jpanel2.setLocation(0, 0);
 

@@ -11,11 +11,15 @@ package Clases.Colegio;
  */
 public class Periodo {
 
-    public Integer getCodigoPeriodo() {
+    
+    private String codigoPeriodo;
+    private Integer numeroPeriodo;
+    
+    public String getCodigoPeriodo() {
         return codigoPeriodo;
     }
 
-    public void setCodigoPeriodo(Integer codigoPeriodo) {
+    public void setCodigoPeriodo(String codigoPeriodo) {
         this.codigoPeriodo = codigoPeriodo;
     }
 
@@ -26,25 +30,7 @@ public class Periodo {
     public void setNumeroPeriodo(Integer numeroPeriodo) {
         this.numeroPeriodo = numeroPeriodo;
     }
-
-    public String getEstadoAprobacion() {
-        return estadoAprobacion;
-    }
-
-    public void setEstadoAprobacion(String estadoAprobacion) {
-        this.estadoAprobacion = estadoAprobacion;
-    }
-
-    public String getNotaAcumulada() {
-        return notaAcumulada;
-    }
-
-    public void setNotaAcumulada(String notaAcumulada) {
-        this.notaAcumulada = notaAcumulada;
-    }
-    private Integer codigoPeriodo;
-    private Integer numeroPeriodo;
-    private String estadoAprobacion;
-    private String notaAcumulada;
     
+
+
 }

@@ -100,14 +100,18 @@ public class PnlEstudiante extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbEstudiante);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de estudiante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de estudiante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
 
+        lblApellidosEstudiante.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApellidosEstudiante.setText("Apellido:");
 
+        lblDireccionEstudiante.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblDireccionEstudiante.setText("Dirección:");
 
+        lblEncargado.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblEncargado.setText("Encargado:");
 
+        lblTelefonoEstudiante.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblTelefonoEstudiante.setText("Telefono:");
 
         cmbGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -125,12 +129,16 @@ public class PnlEstudiante extends javax.swing.JPanel {
             ex.printStackTrace();
         }
 
+        lblCodGrado.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblCodGrado.setText("Grado:");
 
+        lblCodigoEstudiante.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblCodigoEstudiante.setText("Nombre de persona:");
 
+        lblCorreoEstu.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblCorreoEstu.setText("Correo Electronico:");
 
+        lblNombresEstudiante.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblNombresEstudiante.setText("Nombre:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -154,21 +162,20 @@ public class PnlEstudiante extends javax.swing.JPanel {
                                         .addComponent(cmbPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTelefonoEstudiante)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblNombresEstudiante)
-                                        .addGap(10, 10, 10)))
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTelefonoEstudiante)
+                                    .addComponent(lblNombresEstudiante))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtNombre)
                                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addComponent(lblDireccionEstudiante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblEncargado)
@@ -225,7 +232,7 @@ public class PnlEstudiante extends javax.swing.JPanel {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(204, 204, 204))); // NOI18N
 
         btnAgregar.setBackground(new java.awt.Color(255, 196, 0));
         btnAgregar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
@@ -307,7 +314,7 @@ public class PnlEstudiante extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

@@ -38,6 +38,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
         tbUsuarios.setFont(new Font ("Dialog", Font.PLAIN, 12));
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
+        
     }
 
     /**
@@ -93,8 +94,6 @@ public class PnlUsuarios extends javax.swing.JPanel {
         jLabel3.setText("Contraseña:");
 
         cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txtClave.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -340,7 +339,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
     private void agregarUsuario()
     {
         
-        if (txtUsuario.getText().isEmpty() || txtClave2.getText().isEmpty() ||  cmbPersona.getSelectedIndex() == -1) 
+        if (txtUsuario.getText().isEmpty() || txtClave.getText().isEmpty() ||  cmbPersona.getSelectedIndex() == -1) 
         {
             JOptionPane.showMessageDialog(this, "No dejar campos vacios", "Advertencia",JOptionPane.WARNING_MESSAGE);
         }
@@ -354,7 +353,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
             //System.out.print(idPersona);
 
             controlador_usuario.setUsuario(txtUsuario.getText());
-            controlador_usuario.setClave(txtClave2.getText()); 
+            controlador_usuario.setClave(txtClave.getText()); 
             funciones.agregarUsuario(controlador_usuario);
             //Se actualizan la lista de personas que no han sido asignadas como estudiante o docente
             cmbPersona.setModel(funciones.llenarPersonas());
